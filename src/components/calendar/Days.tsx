@@ -69,7 +69,7 @@ function Days({
       <div key={rowIndex} style={style}>
         {columnIndex === dates.length - 1 ? (
           <div className="h-full flex flex-col">
-            <div className="h-20">{}</div>
+            <div className="h-20">{ }</div>
             <div className="w-[280px] flex justify-center items-center h-full  cursor-pointer border-y border-l border-gray-200">
               <Body2 className="text-gray-400">
                 End of calendar availability.

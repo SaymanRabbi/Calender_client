@@ -3,7 +3,9 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { usePopper } from 'react-popper';
 import { createPopper } from '@popperjs/core';
 import ReactDOM from 'react-dom';
+import { useMyContext } from '@/app.context';
 import PopoverCard from '../popover';
+
 
 interface IProps {
   children: ReactNode;
@@ -11,6 +13,8 @@ interface IProps {
   component: ReactNode;
   resetAvailableStay?: any;
   ammountOfStayDates: number;
+  isPopoverOpen:boolean;
+  setIsPopoverOpen:Function ;
 }
 
 function CalendarPopover({
@@ -19,12 +23,18 @@ function CalendarPopover({
   component,
   resetAvailableStay,
   ammountOfStayDates,
+  isPopoverOpen,
+  setIsPopoverOpen,
 }: IProps) {
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
     null
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const {pop, setPop } = useMyContext();
+  // const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  console.log("checking new", isPopoverOpen) ;
+
+
 
   const { styles, attributes }: any = usePopper(
     referenceElement,
@@ -34,6 +44,14 @@ function CalendarPopover({
       strategy: 'fixed',
     }
   );
+  useEffect(()=>{
+    // console.log("pop", pop);
+    if(pop){
+      // const buttonEm=document.querySelector(".targetedElement")
+      // console.log("em", buttonEm) ;
+      // buttonEm?.click()
+    }
+  },[pop])
 
   useEffect(() => {
     const destinationContainer = document.getElementById('destination');
@@ -65,6 +83,7 @@ function CalendarPopover({
           !popperElement.contains(target) &&
           !referenceElement.contains(target)
         ) {
+          // console.log("clicking");
           setIsPopoverOpen(false);
           resetAvailableStay();
         }
@@ -79,21 +98,27 @@ function CalendarPopover({
   }, [popperElement, referenceElement, resetAvailableStay]);
 
   const togglePopover = () => {
-    setIsPopoverOpen((prev) => !prev);
+    // setIsPopoverOpen((prev) => !prev);
+
+
+    // changed by asad
+    setIsPopoverOpen(true)
+
+    // end changed by asad
 
     if (isPopoverOpen) {
-      resetAvailableStay();
+      // resetAvailableStay();
     }
   };
 
-  //   const closePopover = (value: boolean) => {
-  //     setIsPopoverOpen(value);
-  //   };
+    // const closePopover = (value: boolean) => {
+    //   setIsPopoverOpen(value);
+    // };
 
   return (
     <>
       {/* eslint-disable */}
-      <div ref={setReferenceElement} onClick={togglePopover}>
+      <div  ref={setReferenceElement} onClick={togglePopover}>
         {children}
       </div>
       {isPopoverOpen &&
@@ -105,12 +130,15 @@ function CalendarPopover({
             id={id}
             className="popover"
           >
-            <PopoverCard setIsPopoverOpen={setIsPopoverOpen}>
+            <PopoverCard
+             setIsPopoverOpen={setIsPopoverOpen}
+             >
               {component}
             </PopoverCard>
           </div>,
           document.querySelector('#destination')!
         )}
+
     </>
   );
 }

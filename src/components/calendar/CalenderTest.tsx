@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import moment, { Moment } from 'moment';
 // import { usePopper } from 'react-popper';
 import { CalendarLayer } from '@/icons';
@@ -7,6 +7,7 @@ import MonthIndicator from './MonthIndicator';
 
 import { Body1, Body2, Heading3 } from '../Typography';
 import { TodayButton } from '../Buttons';
+import CalenderProvider from '@/app.context';
 
 // import PopoverCard from '../popover';
 // import StayOptions from '../popover/StayOptions';
@@ -240,14 +241,17 @@ function CalenderTest() {
   useEffect(() => {
     setSpaces(spacesX);
   }, []);
+  // const {file}=useContext(CalenderProvider)
+  // console.log("file", file );
 
   const [dates, setDates] = useState<Moment[]>([]);
+
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
 
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   const [scrollIndex, setScrollIndex] = useState<any>(null);
 
-  const [availableStay, setAvailableStay] = useState<any>({ 
+  const [availableStay, setAvailableStay] = useState<any>({
     space: null,
     departDate: '',
     arriveDate: '',
@@ -269,8 +273,10 @@ function CalenderTest() {
         daysArray.push(date);
       }
     });
-    setDates(daysArray); 
+    setDates(daysArray);
   }, []);
+
+
 
   const setDateToToday = () => {
     const month = moment();
@@ -311,7 +317,7 @@ function CalenderTest() {
     const targetIndex = dates.findIndex(
       (date) =>
         date.format('DD-MMMM-YYYY') ===
-        firstDayOfPrevMonth.format('DD-MMMM-YYYY') 
+        firstDayOfPrevMonth.format('DD-MMMM-YYYY')
     );
 
     if (targetIndex !== -1) {
@@ -339,8 +345,11 @@ function CalenderTest() {
     setInViewDateIndex(visibleColumnStartIndex);
   };
 
+
+
   return (
     <>
+
       <div className="flex flex-col items-center justify-center w-full mx-auto my-6 bg-white card-shadow rounded-2xl">
         <div className="flex items-center justify-between w-full gap-3 p-5 max-md:flex-col-reverse">
           <MonthIndicator

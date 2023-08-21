@@ -2,6 +2,7 @@ import React from 'react';
 
 import { PopoverCardProps } from '@/types';
 import { Cancel } from '@/icons';
+import { useMyContext } from '@/app.context';
 
 // import CrossIconLight from '../Icon/CrossIconLight';
 
@@ -9,6 +10,13 @@ export default function PopoverCard({
   children,
   setIsPopoverOpen,
 }: PopoverCardProps) {
+  const { buttonState,setButtonState } = useMyContext();
+
+  const hidePopever=()=>{
+    setIsPopoverOpen(false) 
+    setButtonState(false)
+
+  }
   return (
     <div
       className="w-[317px] overflow-y-visible z-40 absolute flex flex-col rounded-2xl bg-white  "
@@ -19,7 +27,7 @@ export default function PopoverCard({
     >
       <button
         type="button"
-        onClick={() => setIsPopoverOpen(false)}
+        onClick={hidePopever}
         className="inline-flex items-center m-2 justify-center flex-shrink-0 w-8 h-8 hover:bg-gray-100 bg-white rounded-3xl p-1 "
       >
         {/* <CrossIconLight /> */}
