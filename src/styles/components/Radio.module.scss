@@ -1,0 +1,31 @@
+.radio {
+  @apply cursor-pointer flex items-center gap-2 py-2 px-1 md:px-3;
+}
+
+.radio--disabled {
+  @apply pointer-events-none select-none opacity-50;
+}
+
+.radio__circle {
+  @apply w-4.5 h-4.5 border-2 border-gray-300 rounded-full grid place-items-center;
+
+  & > div {
+    @apply w-2 h-2 rounded-full bg-purple-200 opacity-0 transition-opacity duration-400 ease-in-out;
+  }
+}
+
+.radio__input {
+  @apply w-0 h-0 opacity-0 hidden;
+
+  &:not(:checked):hover + .radio__circle {
+    @apply bg-purple-100;
+  }
+
+  &:checked + .radio__circle {
+    @apply border-purple-200;
+
+    & > div {
+      @apply opacity-100;
+    }
+  }
+}

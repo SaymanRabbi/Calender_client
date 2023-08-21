@@ -1,0 +1,19 @@
+@use '../utils';
+
+.header-container {
+  @apply sticky top-0 z-50 bg-white transform duration-300 
+        ease-in-out flex justify-between items-center
+        px-6 py-2 md:px-10 md:py-3 border-b-2 border-gray-100;
+
+  &__item-separator {
+    @apply hidden w-px h-7 bg-gray-200 md:inline;
+  }
+
+  &__items--right {
+    @apply flex items-center gap-10;
+  }
+
+  &__items--left {
+    @apply flex gap-6;
+  }
+}

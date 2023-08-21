@@ -1,0 +1,11 @@
+.section {
+  @apply flex justify-center gap-3 px-6;
+
+  & > ul {
+    @apply flex items-center justify-around md:gap-6 text-dark;
+  }
+
+  & > p {
+    @apply underline text-dark;
+  }
+}

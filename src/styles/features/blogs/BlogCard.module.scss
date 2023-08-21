@@ -1,0 +1,19 @@
+.blog-card {
+  @apply flex md:flex-row flex-col gap-6 p-3 rounded-8xl shadow-card;
+
+  & > img {
+    @apply w-full h-40 md:w-[260px] md:h-auto xl:w-[260px] xl:h-[260px] rounded-[34px];
+  }
+}
+
+.blog-card__typography {
+  @apply flex flex-col gap-3 max-md:items-center md:justify-center;
+
+  & p {
+    @apply text-gray-400 whitespace-pre-wrap;
+  }
+
+  & > div {
+    @apply flex flex-col items-center md:items-start;
+  }
+}

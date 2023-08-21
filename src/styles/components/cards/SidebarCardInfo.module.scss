@@ -1,0 +1,20 @@
+.section {
+  box-shadow: 0px 12px 24px -4px rgba(145, 158, 171, 0.12),
+    0px 0px 2px 0px rgba(145, 158, 171, 0.2);
+  @apply lg:w-[344px] bg-white overflow-hidden rounded-2xl;
+}
+
+.card-gradient {
+  background: var(
+    --gradient-2,
+    linear-gradient(135deg, #f0fdff 0%, #e9e9ff 100%)
+  );
+}
+
+.section__typography {
+  @apply flex items-center h-20 justify-between px-6 py-6;
+}
+
+.action {
+  @apply flex items-center justify-center w-full py-3 bg-gray-100 h-14 border-t rounded-b-2xl;
+}

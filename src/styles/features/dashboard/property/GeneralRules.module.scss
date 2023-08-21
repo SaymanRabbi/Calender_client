@@ -1,0 +1,7 @@
+.section {
+  @apply flex flex-col items-start self-stretch pt-0 gap-1.5;
+
+  & > p {
+    @apply text-gray-400;
+  }
+}

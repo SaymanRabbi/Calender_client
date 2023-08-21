@@ -1,0 +1,11 @@
+.carousel {
+  @apply relative w-[668px] h-[912px];
+}
+
+.carousel__image {
+  @apply h-full absolute opacity-0 z-10 top-0 object-contain transition-opacity duration-1000 ease-out;
+
+  &--active {
+    @apply opacity-100;
+  }
+}

@@ -1,0 +1,18 @@
+.wrapper {
+  box-shadow: 0px 12px 24px -4px rgba(145, 158, 171, 0.12),
+    0px 0px 2px 0px rgba(145, 158, 171, 0.2);
+  @apply flex flex-col items-start
+      w-full rounded-2xl p-6 bg-white gap-6;
+}
+.typography__wrapper__desc {
+  @apply flex self-stretch gap-6 lg:items-center max-lg:flex-col;
+}
+.typography__desc {
+  @apply flex flex-col flex-1 gap-6;
+  & > p {
+    @apply text-gray-400;
+  }
+}
+.action {
+  @apply max-lg:flex max-lg:justify-end max-lg:w-full;
+}

@@ -1,0 +1,25 @@
+@use '../../utils';
+
+.blog-header {
+  @apply py-6 px-3 md:px-30 md:py-20 flex flex-col items-center;
+
+  &__divider {
+    @apply w-[140px] my-6 h-px bg-gray-200;
+  }
+
+  &__link {
+    @include utils.link;
+  }
+
+  & > h1 {
+    @apply text-center;
+  }
+}
+
+.blogs-header__links {
+  @apply flex gap-12;
+}
+
+.blog-header__links {
+  @apply flex gap-3;
+}

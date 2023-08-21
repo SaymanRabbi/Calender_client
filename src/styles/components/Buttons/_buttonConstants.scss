@@ -1,0 +1,41 @@
+@use '../../utils';
+
+$button-padding-x: 22px;
+$button-padding-y: 10px;
+
+$link-padding-x: 12px;
+$link-padding-y: 4px;
+
+@mixin button-base {
+  padding: $button-padding-y $button-padding-x;
+  border-radius: 999px;
+
+  @include utils.pressable;
+}
+@mixin button-base-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+
+  @include utils.pressable;
+}
+
+@mixin button-small {
+  padding: $link-padding-y $link-padding-x;
+  border-radius: 999px;
+
+  @include utils.pressable;
+}
+
+@mixin link {
+  padding: $link-padding-y $link-padding-x;
+
+  @include utils.link;
+}
+
+@mixin icon {
+  @apply grid place-items-center 
+  fill-gray-300 p-3 rounded-full bg-white
+  border border-gray-200;
+  @include utils.pressable;
+}

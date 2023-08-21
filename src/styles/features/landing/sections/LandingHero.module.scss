@@ -1,0 +1,67 @@
+@use '../../../utils';
+
+.landing-section {
+  @apply min-h-screen block md:flex md:justify-between md:items-center px-0 lg:px-5 xl:px-20;
+}
+
+.landing-section__typography {
+  @apply w-auto px-6 md:px-0 md:w-[540px] mt-10 md:mt-0;
+
+  & > svg {
+    @apply fill-dark hidden md:block mb-6;
+  }
+
+  & > h1 {
+    @apply mb-3 md:mb-6;
+  }
+
+  & > p {
+    @apply text-gray-400 text-xl leading-[30px] mb-10 md:mb-6;
+
+    & > span {
+      @include utils.underline($visibleOnMobile: false);
+    }
+  }
+}
+
+.typography__auth-buttons {
+  @apply flex gap-6;
+
+  & > button:first-child {
+    @apply w-full md:w-[180px];
+  }
+
+  & > button:last-child {
+    @apply hidden md:block;
+  }
+}
+
+.landing-section__carousel {
+  &--mobile {
+    @apply block md:hidden;
+
+    & > img:first-child {
+      @apply absolute -z-10 w-full;
+    }
+
+    & > img:last-child {
+      @apply invisible w-full -mt-16;
+    }
+  }
+
+  &--desktop {
+    @apply hidden md:block w-[668px] h-[912px];
+  }
+}
+
+.landing-cta {
+  @apply flex flex-col md:flex-row items-center justify-center gap-4 mt-6;
+
+  & > p {
+    @apply text-gray-400;
+  }
+
+  & > button {
+    @apply border border-gray-200 hover:bg-gray-100;
+  }
+}

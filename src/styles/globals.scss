@@ -1,0 +1,81 @@
+@use 'fonts';
+@use 'utils';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white: white;
+  --dark: #1b1d2c;
+  --green: #49ca21;
+  --yellow: #f4a407;
+  --pink: #fd4680;
+  --magenta: #c345ff;
+  --purple-100: #e9e9ff;
+  --purple-200: #6666ff;
+  --blue-100: #f0fdff;
+  --blue-200: #e2f8ff;
+  --blue-300: #d7ecf2;
+  --gray-100: #f8f9fa;
+  --gray-200: #dbe4ec;
+  --gray-300: #8999b0;
+  --gray-400: #6e7989;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  .heading-1 {
+    @include fonts.heading-1;
+  }
+
+  .heading-2 {
+    @include fonts.heading-2;
+  }
+
+  .heading-3 {
+    @include fonts.heading-3;
+  }
+
+  .heading-4 {
+    @include fonts.heading-4;
+  }
+
+  .button-primary {
+    @include fonts.button-primary;
+  }
+
+  .button-secondary {
+    @include fonts.button-secondary;
+  }
+
+  .button-small {
+    @include fonts.button-small;
+  }
+
+  .body-large {
+    @include fonts.body-large;
+  }
+
+  .body-1 {
+    @include fonts.body-1;
+  }
+
+  .body-2 {
+    @include fonts.body-2;
+  }
+
+  .text-caption {
+    @include fonts.text-caption;
+  }
+}
+
+@layer utils {
+  .underline-text {
+    @include utils.underline;
+  }
+
+  .pressable {
+    @include utils.pressable;
+  }
+}

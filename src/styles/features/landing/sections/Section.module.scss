@@ -1,0 +1,47 @@
+@use '../../../utils';
+
+.section {
+  @apply py-6 px-0 lg:px-5 xl:px-20 flex flex-col md:flex-row justify-between items-center;
+}
+
+.section__typography--narrow {
+  @apply w-full flex-shrink-0 md:w-80 lg:w-120 mb-6 px-0;
+
+  p {
+    @apply text-gray-400 mb-1.5;
+  }
+}
+
+.section__typography--broad {
+  @apply w-full flex-shrink-0 md:w-80 lg:w-120 xl:w-153;
+
+  p {
+    @apply text-gray-400;
+  }
+}
+
+.typography__title {
+  @apply px-6 md:px-0 -mb-7 md:mb-6;
+
+  & > p {
+    @apply text-gray-400 mb-1.5;
+  }
+}
+
+.typography__desc {
+  @apply px-6 md:px-0 mb-6;
+
+  & > p {
+    @apply whitespace-pre-wrap;
+  }
+
+  & > ul > li {
+    @apply mt-6 md:mt-12;
+
+    & > h4 {
+      @apply mb-1.5;
+
+      @include utils.bulletpoint($visibleOnMobile: false);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+export default {
+  // identityPoolId: process.env.NEXT_PUBLIC_IDENTITY_POOL_ID,
+  //   userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
+  //   region: process.env.NEXT_PUBLIC_REGION,
+  //   userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID,
+  //   cookieStorage: {
+  //     domain: process.env.NEXT_PUBLIC_WEBSITE_DOMAIN,
+  //     path: '/',
+  //     expires: 365,
+  //     sameSite: 'lax',
+  //     secure: true,
+  //   },
+  //   oauth: {
+  //     domain: process.env.NEXT_PUBLIC_OAUTH_DOMAIN,
+  //     scope: [
+  //       'phone',
+  //       'email',
+  //       'profile',
+  //       'openid',
+  //       'aws.cognito.signin.user.admin',
+  //     ],
+  //     redirectSignIn: process.env.NEXT_PUBLIC_SIGN_IN_REDIRECT_URL,
+  //     redirectSignOut: process.env.NEXT_PUBLIC_SIGN_OUT_REDIRECT_URL,
+  //     responseType: 'code',
+  //   },
+  userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID,
+  region: 'us-east-2',
+  userPoolWebClientId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_CLIENT_ID,
+  // cookieStorage: {
+  //   domain: process.env.NEXT_PUBLIC_WEBSITE_DOMAIN,
+  //   path: '/',
+  //   expires: 365,
+  //   sameSite: 'strict',
+  //   secure: true,
+  // },
+};

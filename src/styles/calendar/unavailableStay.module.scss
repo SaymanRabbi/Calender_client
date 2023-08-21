@@ -1,0 +1,10 @@
+.capsule__wrapper {
+  @apply absolute top-1/2 right-0 -translate-y-1/2;
+}
+.capsule {
+  @apply hover:bg-white flex rounded-[20px] h-10 items-center gap-1.5 px-5;
+
+  &:hover {
+    @apply shadow-stay-shadow;
+  }
+}

@@ -1,0 +1,41 @@
+.input-container {
+  @apply ring-1 h-12 ring-gray-200 bg-gray-100 rounded-lg 
+        flex justify-between gap-2 px-4 py-3;
+
+  & > input {
+    @apply flex-1 text-dark bg-transparent text-lg w-full 
+    appearance-none focus:outline-none placeholder:text-gray-300;
+  }
+
+  & > button {
+    @apply focus:outline-none;
+  }
+
+  &:focus-within {
+    @apply ring-2 ring-gray-300 bg-white;
+
+    & > input {
+      @apply placeholder:text-dark;
+    }
+  }
+}
+
+.input-container-disabled {
+  @apply opacity-75 cursor-not-allowed;
+
+  & * {
+    @apply cursor-not-allowed;
+  }
+}
+
+.input-container-error {
+  @apply ring-1 ring-pink;
+
+  & > input {
+    @apply placeholder:text-pink;
+  }
+
+  &:focus-within {
+    @apply ring-2 ring-pink;
+  }
+}

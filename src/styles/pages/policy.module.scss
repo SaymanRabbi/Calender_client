@@ -1,0 +1,11 @@
+.section {
+  @apply 2xl:w-[1440px] flex flex-col items-center mx-auto gap-20 px-6 lg:p-20;
+}
+
+.section__typography--broad {
+  @apply xl:w-[1080px] flex flex-col gap-10;
+}
+
+.section__typography--narrow {
+  @apply flex flex-col gap-5;
+}

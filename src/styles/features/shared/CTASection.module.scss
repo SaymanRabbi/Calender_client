@@ -1,0 +1,11 @@
+.cta-section {
+  @apply flex pt-6 mb-6 justify-center items-center;
+
+  & > p {
+    @apply text-gray-400;
+  }
+
+  & button {
+    @apply border bg-white border-gray-200 hover:bg-gray-100;
+  }
+}

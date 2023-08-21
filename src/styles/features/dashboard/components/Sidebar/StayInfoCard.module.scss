@@ -1,0 +1,31 @@
+.stay-list {
+  @apply hidden md:block bg-white rounded-2xl shadow-card;
+
+  &__header {
+    @apply flex h-20 p-6 justify-between items-center;
+  }
+
+  &__body {
+    @apply flex flex-col;
+
+    &--no-item {
+      @apply w-max mx-auto pt-6;
+
+      & p {
+        @apply text-gray-300;
+      }
+    }
+  }
+
+  &__footer {
+    @apply flex items-center justify-center w-full py-3 bg-gray-100 h-14 border-t rounded-b-2xl;
+
+    & > a > p {
+      @apply text-gray-400 hover:underline;
+    }
+
+    &--placeholder {
+      @apply h-10;
+    }
+  }
+}

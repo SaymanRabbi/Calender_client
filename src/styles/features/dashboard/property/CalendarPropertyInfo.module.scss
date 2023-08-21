@@ -1,0 +1,11 @@
+.section {
+    @apply flex max-lg:flex-col lg:flex-row items-center self-stretch justify-center gap-6 p-6 bg-white rounded-2xl;
+
+    & > div {
+        @apply flex items-center justify-center gap-2;
+
+        & > p {
+            @apply text-gray-400
+        }
+    }
+  }

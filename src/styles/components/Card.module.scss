@@ -1,0 +1,14 @@
+@use '../utils';
+
+.card {
+  @apply rounded-2xl w-full p-6 bg-white;
+}
+
+.card--gradient {
+  @include utils.primary-gradient;
+  @apply relative z-0;
+
+  &::before {
+    @apply content-[''] absolute bottom-px left-px w-[calc(100%-2px)] h-[calc(100%-2px)] bg-white rounded-2xl -z-10;
+  }
+}

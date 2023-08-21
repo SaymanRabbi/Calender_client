@@ -1,0 +1,35 @@
+.stay-info {
+  @apply flex gap-3 cursor-pointer overflow-hidden max-h-[150px] pl-6 pr-3;
+
+  &__indicator {
+    @apply flex flex-col flex-shrink-0 items-center max-h-[150px];
+
+    svg {
+      @apply flex-shrink-0 my-3;
+    }
+
+    span {
+      @apply w-px h-full bg-gray-200;
+    }
+  }
+
+  &__body {
+    @apply pt-1.5 pb-3 flex-1;
+
+    & p {
+      @apply text-gray-400 max-h-[88px] overflow-hidden;
+
+      &:first-child {
+        @apply text-dark;
+      }
+    }
+  }
+
+  &__icon {
+    @apply invisible flex-shrink-0 my-auto fill-gray-300;
+  }
+
+  &:hover {
+    @apply bg-gray-100 [&>svg]:visible;
+  }
+}

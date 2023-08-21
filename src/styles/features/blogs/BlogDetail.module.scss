@@ -1,0 +1,15 @@
+.blog-detail {
+  @apply w-full gap-6 lg:w-[800px] px-6 flex flex-col mx-auto;
+}
+
+.blog-detail__typography {
+  @apply w-full text-center flex flex-col gap-1.5;
+
+  & > p {
+    @apply whitespace-pre-wrap text-gray-400;
+  }
+
+  & > img {
+    @apply mx-auto 2xl:w-[600px] rounded-2xl;
+  }
+}

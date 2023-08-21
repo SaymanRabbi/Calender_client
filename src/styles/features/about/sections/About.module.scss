@@ -1,0 +1,81 @@
+@use '../../../utils';
+
+.section {
+  @apply py-6 px-0 lg:px-5 xl:px-20 flex flex-col md:flex-row justify-between items-center;
+}
+
+.section__typography--narrow {
+  @apply w-full flex-shrink-0 md:w-80 lg:w-120 mb-6 px-0;
+
+  p {
+    @apply text-gray-400 mb-1.5;
+  }
+}
+
+.home__image {
+  @apply object-contain max-md:hidden h-[80vh] md:w-[35%] lg:w-1/2 2xl:w-[630px] 2xl:h-[889px];
+}
+
+.section__typography--broad {
+  @apply w-full flex-shrink-0 md:w-80 lg:w-120 xl:w-[540px];
+
+  p {
+    // @apply text-gray-400;
+  }
+}
+
+.section__typography--home {
+  @apply flex justify-between gap-5;
+
+  p {
+    @apply text-gray-400;
+  }
+}
+
+.typography__bulletpoint {
+  @apply flex md:pl-2 gap-1;
+  & > p {
+    @apply hidden md:inline text-dark;
+  }
+}
+
+.costs_section--wrapper {
+  @apply w-full  border border-solid border-gray-200 bg-gray-100 p-6 rounded-xl lg:h-[192px] my-6;
+}
+
+.typography__title {
+  @apply px-6 md:px-0 -mb-7 md:mb-6;
+
+  & > p {
+    @apply text-gray-300 mb-1.5;
+  }
+}
+
+.typography__desc {
+  @apply px-6 md:px-0;
+
+  & > p {
+    @apply whitespace-pre-wrap text-gray-400;
+  }
+
+  & > div {
+    @apply mt-6;
+
+    & > h4 {
+      @apply inline;
+    }
+  }
+
+  & > ul > li {
+    @apply mt-6;
+
+    & > h4 {
+      @apply mb-1.5;
+
+      @include utils.bulletpoint($visibleOnMobile: false);
+    }
+    & > p {
+      @apply text-gray-400 mt-1.5;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.settings-card {
+  @apply flex flex-col items-start gap-6; 
+
+  &__header {
+    @apply w-full;
+
+    & > h4 {
+      @apply mb-1.5;
+    }
+
+    & > p {
+      @apply text-gray-400;
+    }
+  }
+
+  &__actions {
+    @apply flex justify-end w-full gap-3;
+  }
+}

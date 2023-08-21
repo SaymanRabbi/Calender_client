@@ -1,0 +1,23 @@
+
+.feedback_main {
+    box-shadow: 0 12px 24px -4px rgba(145, 158, 171, 0.12),
+      0 0 2px 0 rgba(145, 158, 171, 0.2);
+    @apply flex flex-col rounded-2xl w-full p-6 bg-white items-start self-stretch gap-6;
+  }
+  
+  .feedback-section__typography {
+    @apply flex flex-col gap-1.5 items-start self-stretch;
+  
+    & > div {
+     & > p {
+        @apply text-gray-400;
+     }
+
+     & > ul {
+        @apply ml-5 list-disc text-gray-400;
+     }
+    }
+  }
+
+  
+  

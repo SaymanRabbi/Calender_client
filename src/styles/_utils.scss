@@ -1,0 +1,80 @@
+@use 'variables';
+
+$press-scale: 0.97;
+
+@mixin primary-gradient($gradient-angle: 135deg) {
+  background: linear-gradient(
+    $gradient-angle,
+    variables.$magenta 0%,
+    variables.$purple-200 41.06%
+  );
+}
+
+@mixin secondary-gradient($gradient-angle: 135deg) {
+  background: linear-gradient(
+    $gradient-angle,
+    variables.$blue-100 0%,
+    variables.$purple-100 100%
+  );
+}
+
+@mixin primary-button-hover-gradient($gradient-angle: 135deg) {
+  &:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.15) 100%
+      ),
+      linear-gradient(
+        $gradient-angle,
+        variables.$magenta 0%,
+        variables.$purple-200 41.06%
+      );
+  }
+}
+
+@mixin pressable {
+  &:not(:disabled):hover:is(:active) {
+    scale: $press-scale;
+  }
+}
+
+@mixin link {
+  &:hover {
+    @apply underline text-purple-200;
+  }
+}
+
+@mixin underline($visibleOnMobile: true) {
+  @if $visibleOnMobile {
+    & {
+      @apply underline underline-offset-4 decoration-1;
+    }
+  } @else {
+    & {
+      @apply md:underline md:underline-offset-4 md:decoration-1;
+    }
+  }
+}
+
+@mixin text-gradient {
+  @include primary-gradient($gradient-angle: 90deg);
+
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin bulletpoint($visibleOnMobile: true) {
+  & {
+    @if $visibleOnMobile {
+      @apply relative ml-6;
+    } @else {
+      @apply relative ml-0 md:ml-6;
+    }
+
+    &::before {
+      @apply content-none md:content-['\2022'] absolute top-0 left-0 md:-top-0.75 md:-left-4;
+    }
+  }
+}

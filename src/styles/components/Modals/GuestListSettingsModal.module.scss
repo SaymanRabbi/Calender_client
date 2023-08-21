@@ -1,0 +1,19 @@
+.section {
+  @apply flex flex-col items-start self-stretch w-full gap-6;
+}
+
+.section__disclosure {
+  @apply flex flex-col justify-center w-full gap-6;
+}
+
+.section__disclosure--button {
+  @apply flex justify-between w-full text-sm font-medium text-left focus:outline-none focus-visible:ring focus-visible:ring-opacity-75;
+}
+.section__disclosure--Panel {
+  @apply flex flex-col items-start self-stretch gap-3 p-6 border rounded-lg border-gray-200 bg-gray-100;
+}
+.section__disclosure--container {
+  @apply flex items-center justify-between w-full;
+}
+
+
