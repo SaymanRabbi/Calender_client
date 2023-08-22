@@ -5,6 +5,7 @@ import { createPopper } from '@popperjs/core';
 
 import StayNights from './StayNights';
 import PopoverCard from '.';
+import { useMyContext } from '@/app.context';
 
 function AvailableStayPopover({ children, resetAvailableStay, id }: any) {
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
@@ -12,6 +13,9 @@ function AvailableStayPopover({ children, resetAvailableStay, id }: any) {
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  // const { isPopoverOpen, setIsPopoverOpen } = useMyContext();
+  // console.log("is", isPopoverOpen );
+
 
   const { styles, attributes }: any = usePopper(
     referenceElement,
@@ -67,6 +71,7 @@ function AvailableStayPopover({ children, resetAvailableStay, id }: any) {
 
   const togglePopover = () => {
     setIsPopoverOpen((prev) => !prev);
+    // setIsPopoverOpen(!isPopoverOpen);
 
     if (isPopoverOpen) {
       resetAvailableStay();
@@ -92,7 +97,9 @@ function AvailableStayPopover({ children, resetAvailableStay, id }: any) {
             id={id}
             className="popover"
           >
-            <PopoverCard setIsPopoverOpen={closePopover}>
+            <PopoverCard
+             setIsPopoverOpen={closePopover}
+             >
               <StayNights />
             </PopoverCard>
           </div>,

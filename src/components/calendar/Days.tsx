@@ -18,6 +18,7 @@ import AvailableStay from './capsule/AvailableStay';
 import { Body1, Body2 } from '../Typography';
 import Stay from './capsule/Stay';
 import UnavailableStay from './capsule/UnavailableStay';
+import { useMyContext } from '@/app.context';
 
 // interface MonthProps {
 //   dates: Moment[];
@@ -42,6 +43,32 @@ function Days({
   setAvailableStay,
 }: any) {
   const [today] = useState(moment());
+  const { capsuleParentLoc, setCapsuleParentLoc} = useMyContext();
+
+
+  // Get references to the parent and child elements
+// const parent = document.querySelector('.parent');
+// const child = document.querySelector('.child');
+
+// // Add an event listener to the window's scroll event
+// window.addEventListener('scroll', () => {
+//   // Get the parent's position relative to the window
+//   const parentRect = parent.getBoundingClientRect();
+
+//   // Check if the parent is out of the window on the left or right side
+//   if (parentRect.left < 0) {
+//     // Adjust the child's position to keep it within the window on the left side
+//     child.style.left = `${-parentRect.left}px`;
+//   } else if (parentRect.right > window.innerWidth) {
+//     // Adjust the child's position to keep it within the window on the right side
+//     const overflow = parentRect.right - window.innerWidth;
+//     child.style.left = `calc(100% - ${overflow}px)`;
+//   } else {
+//     // Reset the child's position if the parent is within the window
+//     child.style.left = '0';
+//   }
+// });
+
 
   const renderDay = ({
     columnIndex,
@@ -69,7 +96,7 @@ function Days({
       <div key={rowIndex} style={style}>
         {columnIndex === dates.length - 1 ? (
           <div className="h-full flex flex-col">
-            <div className="h-20">{}</div>
+            <div className="h-20">{ }</div>
             <div className="w-[280px] flex justify-center items-center h-full  cursor-pointer border-y border-l border-gray-200">
               <Body2 className="text-gray-400">
                 End of calendar availability.
@@ -98,6 +125,7 @@ function Days({
                     key={`space-${index + 1}`}
                     className={`${dayClass} w-20 h-20 cursor-pointer border-y border-l border-gray-200`}
                   >
+                    {/* this is relative for  */}
                     <div className="relative w-20 h-20 group -left-1/2">
                       {space?.stays?.map((stay: any, stayIndex: number) => {
                         const arriveDate = moment(
@@ -178,6 +206,7 @@ function Days({
         rowCount={1}
         onItemsRendered={onItemsRendered}
         rowHeight={(_) => (spaces.length - 1) * 82 + 159}
+        className="allDaysSection" 
       >
         {renderDay}
       </Grid>{' '}

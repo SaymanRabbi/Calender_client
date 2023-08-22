@@ -1,5 +1,6 @@
-import React from 'react';
+import { useRef } from 'react';
 
+import { useMyContext } from '@/app.context';
 import { Go, GoLeft } from '@/icons';
 
 export default function AvailableStayCapsule({
@@ -10,19 +11,46 @@ export default function AvailableStayCapsule({
   decreaseCardWidthToLeft,
   decreaseCardWidthToRight,
 }: any) {
-  const ammountOfStayDates = Math.abs(
+
+  const childRef = useRef(null);
+  const { ammountOfStayDates,setammountOfStayDates } = useMyContext();
+
+  const ammountOfStayDate = Math.abs(
     availableStay.arriveDate.diff(availableStay.departDate, 'days')
   );
+  setammountOfStayDates(ammountOfStayDate)
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
 
+//   useEffect(()=>{
+//     const element = document.querySelector(".offsetValue");
+
+// const rect = element.getBoundingClientRect();
+// setCardContext(rect)
+//   },[])
+
+  // const getCardContext=()=>{
+  //   const element = document.querySelector(".offsetValue");
+
+  //   const rect = element.getBoundingClientRect();
+  //   setCardContext(rect)
+  // }
+
   return (
-    <div className="absolute right-[10px] top-1/2 -translate-y-1/2 ">
+    <div
+
+    // style={{
+    //   position:"absolute",
+    //       left:`${capsuleP}px`,
+    // }}
+     ref={childRef} className={`absolute right-[10px] top-1/2 -translate-y-1/2 z-60`}>
       <div
+
         style={{
           width: `${stayWidth}px`,
+
         }}
         id={`available-capsule-${date.format('DD-MMMM-YYYY')}`}
-        className={` flex bg-green group-hover:stay-shadow rounded-[20px] h-10 items-center justify-between gap-1.5 px-1 `}
+        className={` flex bg-green group-hover:stay-shadow rounded-[20px] h-10 items-center justify-between gap-1.5 px-1 offsetValue`}
       >
         <div className="flex">
           <button onClick={increaseCardWidthToLeft}>

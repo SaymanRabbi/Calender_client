@@ -7,6 +7,8 @@ import DashboardWrapper from '@/components/Wrappers/DashboardWrapper';
 import PropertyHeader from '@/features/property/components/HeaderContent';
 import PropertySidebarContent from '@/features/property/components/SidebarContent';
 import PropertyMainContent from '@/features/property/components/MainContent';
+import { MyContextProvider } from '@/app.context';
+
 
 const properties: PropertyData[] = [
   {
@@ -163,7 +165,9 @@ const Property: NextPageWithLayout = function () {
 
   const property = properties[1];
 
-  return (
+
+  return ( 
+    <MyContextProvider>
     <DashboardWrapper>
       <PropertyHeader
         address={property.address}
@@ -179,6 +183,7 @@ const Property: NextPageWithLayout = function () {
         </DashboardWrapper.MainContent>
       </DashboardWrapper.Content>
     </DashboardWrapper>
+    </MyContextProvider>
   );
 };
 

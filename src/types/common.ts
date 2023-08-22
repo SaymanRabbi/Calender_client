@@ -69,6 +69,7 @@ export interface DashboardPageTitleProps {
 export interface PopoverCardProps {
   children: ReactNode;
   setIsPopoverOpen?: any;
+  cardPlace?:number;
 }
 
 export interface AmenitiesProps {

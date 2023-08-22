@@ -8,9 +8,11 @@ import ContentWrapper from '@/components/Wrappers/ContentWrapper';
 import DashboardSidebar from '@/features/dashboard/components/Sidebar';
 import DashboardMainContent from '@/features/dashboard/components/MainContent';
 
+
 const Dashboard: NextPageWithLayout = function () {
   return (
-    <ContentWrapper className="bg-gray-100">
+
+      <ContentWrapper className="bg-gray-100">
       <CTASection
         banner={{
           visible: true,
@@ -33,6 +35,8 @@ const Dashboard: NextPageWithLayout = function () {
         </DashboardWrapper.Content>
       </DashboardWrapper>
     </ContentWrapper>
+
+
   );
 };
 
