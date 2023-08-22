@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
-import { Go, GoLeft } from '@/icons';
 import { useMyContext } from '@/app.context';
+import { Go, GoLeft } from '@/icons';
 
 export default function AvailableStayCapsule({
   availableStay,
@@ -13,12 +13,12 @@ export default function AvailableStayCapsule({
 }: any) {
 
   const childRef = useRef(null);
-  const { cardContext, setCardContext } = useMyContext();
+  const { ammountOfStayDates,setammountOfStayDates } = useMyContext();
 
-  const ammountOfStayDates = Math.abs(
+  const ammountOfStayDate = Math.abs(
     availableStay.arriveDate.diff(availableStay.departDate, 'days')
   );
-
+  setammountOfStayDates(ammountOfStayDate)
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
 
 //   useEffect(()=>{

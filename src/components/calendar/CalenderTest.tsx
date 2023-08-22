@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
 import moment, { Moment } from 'moment';
+import { useEffect, useRef, useState } from 'react';
 // import { usePopper } from 'react-popper';
 import { CalendarLayer } from '@/icons';
 import Days from './Days';
 import MonthIndicator from './MonthIndicator';
 
-import { Body1, Body2, Heading3 } from '../Typography';
 import { TodayButton } from '../Buttons';
-import CalenderProvider from '@/app.context';
+import { Body1, Body2, Heading3 } from '../Typography';
+
 
 // import PopoverCard from '../popover';
 // import StayOptions from '../popover/StayOptions';

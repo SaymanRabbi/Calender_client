@@ -22,7 +22,6 @@ function CalendarPopover({
   id,
   component,
   resetAvailableStay,
-  ammountOfStayDates,
   isPopoverOpen,
   setIsPopoverOpen,
 }: IProps) {
@@ -30,7 +29,8 @@ function CalendarPopover({
     null
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
-  const { pop, setPop, cardContext, setCardContext } = useMyContext();
+  const { pop,ammountOfStayDates} = useMyContext();
+//  console.log("ammountOfStayDates", ammountOfStayDates);
   // const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [cardPlace, setCardPlace] = useState(0)
 
@@ -65,8 +65,8 @@ function CalendarPopover({
     }
     const dynamic =  Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates <2 ?0 : 33 
     const dynamicTow = (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ?0 : ammountOfStayDates
-    console.log("dynamic", dynamic);
-    console.log("dynamicTow", dynamicTow);
+    // console.log("dynamic", dynamic);
+    // console.log("dynamicTow", dynamicTow);
     if (referenceElement && popperElement) {
       createPopper(referenceElement, popperElement, {
         placement: 'bottom',
@@ -107,21 +107,11 @@ function CalendarPopover({
     };
   }, [popperElement, referenceElement, resetAvailableStay]);
 
-  const togglePopover = (event) => {
+  const togglePopover = (event:any) => {
     // setIsPopoverOpen((prev) => !prev);
     const element = event.currentTarget;
     const rect = element.getBoundingClientRect();
-    const offsetLeft = rect.left;
-    const offsetTop = rect.top;
-    const offsetWidth = rect.width;
-    const offsetHeight = rect.height;
     // setCardContext(rect)
-
-    console.log("Offset Left:", offsetLeft);
-    console.log("Offset Top:", offsetTop);
-    console.log("Offset Width:", offsetWidth);
-    console.log("Offset Height:", offsetHeight);
-
 
     // const element = document.querySelector(".offsetValue");
     // const rect = element.getBoundingClientRect();

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 // Define the shape of your context
 interface MyContextProps {
@@ -9,6 +9,8 @@ interface MyContextProps {
   pop:boolean;
   setPop:Function;
   updateData: (newData: string) => void;
+  ammountOfStayDates:number;
+  setammountOfStayDates:Function;
 }
 interface MyContextProviderProps {
   children: ReactNode;
@@ -36,6 +38,7 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   const [capsuleParentLoc, setCapsuleParentLoc]=useState()
   // const [capsuleP, setCapsuleP]=useState(0)
   const [cardContext, setCardContext]=useState(0)
+  const [ammountOfStayDates,setammountOfStayDates] = useState<number>(0)
 
   // const updateData = (newData: string) => {
   //   setData(newData);
@@ -50,6 +53,8 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     setPop,
     capsuleParentLoc,
     setCapsuleParentLoc,
+    ammountOfStayDates,
+    setammountOfStayDates,
     // capsuleP,
     // setCapsuleP,
     cardContext,

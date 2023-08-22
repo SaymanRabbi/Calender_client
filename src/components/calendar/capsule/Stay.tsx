@@ -8,8 +8,10 @@ export default function Stay({ stay, spaceIndex }: any) {
   const arriveDate = moment(new Date(stay.arriveDate), 'DD-MMMM-YYYY');
   const departDate = moment(stay.departDate, 'DD-MMMM-YYYY');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
+  // const { ammountOfStayDates,setammountOfStayDates } = useMyContext();
+  // console.log(ammountOfStayDates,"hello")
   const ammountOfStayDates = Math.abs(arriveDate.diff(departDate, 'days'));
+  // setammountOfStayDates(ammountOfStayDate)
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
   return (
     <CalendarPopover

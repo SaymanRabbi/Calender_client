@@ -10,12 +10,12 @@ export default function PopoverCard({
   setIsPopoverOpen,
   // cardPlace
 }: PopoverCardProps) {
-  const { buttonState,setButtonState } = useMyContext();
+  const { setButtonState,setammountOfStayDates} = useMyContext();
 
   const hidePopever=()=>{
     setIsPopoverOpen(false)
     setButtonState(false)
-
+    setammountOfStayDates(0)
   }
   return (
     <div
@@ -27,7 +27,7 @@ export default function PopoverCard({
     >
       <button
         type="button"
-        onClick={hidePopever}
+        onClick={()=>hidePopever()}
         className="inline-flex items-center m-2 justify-center flex-shrink-0 w-8 h-8 hover:bg-gray-100 bg-white rounded-3xl p-1 "
       >
         {/* <CrossIconLight /> */}
