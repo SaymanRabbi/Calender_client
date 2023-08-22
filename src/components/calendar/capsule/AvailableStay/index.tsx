@@ -1,11 +1,11 @@
 // import { Moment } from 'moment';
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
 import { useMyContext } from '@/app.context';
 import StayNights from '@/components/popover/StayNights';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+import CalendarPopover from '../../CalendarPopover';
 import AvailableStayCapsulHover from './AvailableStayCapsulHover';
 import AvailableStayCapsule from './AvailableStayCapsule';
-import CalendarPopover from '../../CalendarPopover';
 
 
 // interface IProps {
@@ -135,6 +135,7 @@ export default function AvailableStay({
 
   return (
     <CalendarPopover
+
       ammountOfStayDates={Math.abs(
         moment(availableStay.arriveDate).diff(
           moment(availableStay.departDate),

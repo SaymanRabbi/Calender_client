@@ -1,17 +1,20 @@
-import moment from 'moment';
-import React from 'react';
-import { CommentDark } from '@/icons';
 import StayNights from '@/components/popover/StayNights';
+import { CommentDark } from '@/icons';
+import moment from 'moment';
+import { useState } from 'react';
 import CalendarPopover from '../CalendarPopover';
 
 export default function Stay({ stay, spaceIndex }: any) {
   const arriveDate = moment(new Date(stay.arriveDate), 'DD-MMMM-YYYY');
   const departDate = moment(stay.departDate, 'DD-MMMM-YYYY');
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const ammountOfStayDates = Math.abs(arriveDate.diff(departDate, 'days'));
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
   return (
     <CalendarPopover
+    isPopoverOpen={isPopoverOpen}
+setIsPopoverOpen={setIsPopoverOpen}
       ammountOfStayDates={ammountOfStayDates}
       component={
         <StayNights
