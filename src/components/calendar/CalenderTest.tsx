@@ -1,5 +1,5 @@
 import moment, { Moment } from 'moment';
-import { useEffect, useRef, useState } from 'react';
+import React,  { useEffect, useRef, useState } from 'react';
 // import { usePopper } from 'react-popper';
 import { CalendarLayer } from '@/icons';
 import Days from './Days';
@@ -126,8 +126,7 @@ const stays1 = {
     },
   ],
 };
-const {bookingarry,setbookingarry} = useMyContext()
-setbookingarry(stays1)
+
 const stays2 = {
   property: 'Bedroom 2',
   guestLimit: '2',
@@ -232,18 +231,35 @@ const stays2 = {
     },
   ],
 };
-const spacesX = [bookingarry, stays2, stays2];
+
 // const spacesY = [stays1, stays2];
 
 function CalenderTest() {
-  const [spaces, setSpaces] = useState(spacesX);
+
+  const { bookingarry, setbookingarry } = useMyContext()
+  const [spaces, setSpaces] = useState([]);
+
+    useEffect(() => {
+      setbookingarry(stays1)
+  }, [stays1]);
+
+    useEffect(() => {
+      setSpaces([bookingarry,stays2,stays2 ])
+  }, [bookingarry,stays2]);
+
+
+  // const spacesX = [stays1, stays2, stays2];
+
+  console.log("spce", spaces);
   //   const [isUpdate, setIsUpdate] = useState<Boolean>(true);
 
   const containerRef = useRef<any>(null);
 
-  useEffect(() => {
-    setSpaces(spacesX);
-  }, []);
+  // useEffect(() => {
+  //   setSpaces(spacesX);
+  // }, [spacesX]);
+
+
   // const {file}=useContext(CalenderProvider)
   // console.log("file", file );
 
@@ -254,11 +270,12 @@ function CalenderTest() {
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   const [scrollIndex, setScrollIndex] = useState<any>(null);
 
-  const [availableStay, setAvailableStay] = useState<any>({
-    space: null,
-    departDate: '',
-    arriveDate: '',
-  });
+  // const [availableStay, setAvailableStay] = useState<any>({
+  //   space: null,
+  //   departDate: '',
+  //   arriveDate: '',
+  // });
+  const {availableStay,setAvailableStay}=useMyContext()
 
   useEffect(() => {
     const daysArray: Moment[] = [];
@@ -436,11 +453,13 @@ function CalenderTest() {
           <Heading3 className="text-white">Stay scheduling is paused.</Heading3>
         </div>
       </div>
+
       {/* <div className="fixed  top-5 left-1/2 translate-x-[-50%]">
         <PopoverCard>
           <StayOptions />
         </PopoverCard>
       </div> */}
+
     </>
   );
 }

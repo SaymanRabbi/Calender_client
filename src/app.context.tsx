@@ -8,12 +8,14 @@ interface MyContextProps {
   setButtonState:Function;
   pop:boolean;
   setPop:Function;
-  updateData: (newData: string) => void;
+  // updateData: (newData: string) => void;
   ammountOfStayDates:number;
   setammountOfStayDates:Function;
   // capsuleParentLoc? : any,
   bookingarry:any;
   setbookingarry:Function;
+  availableStay:any;
+  setAvailableStay:Function;
 }
 interface MyContextProviderProps {
   children: ReactNode;
@@ -42,7 +44,12 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   // const [capsuleP, setCapsuleP]=useState(0)
   const [cardContext, setCardContext]=useState(0)
   const [ammountOfStayDates,setammountOfStayDates] = useState<number>(0)
-  const [bookingarry,setbookingarry] = useState<any>({})
+  const [bookingarry,setbookingarry] = useState<any>()
+  const [availableStay, setAvailableStay] = useState<any>({
+    space: null,
+    departDate: '',
+    arriveDate: '',
+  });
 
   // const updateData = (newData: string) => {
   //   setData(newData);
@@ -64,7 +71,9 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     cardContext,
     setCardContext,
     bookingarry,
-    setbookingarry
+    setbookingarry,
+    availableStay,
+    setAvailableStay,
   };
 
   return (

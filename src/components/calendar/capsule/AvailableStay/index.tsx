@@ -32,6 +32,7 @@ export default function AvailableStay({
 
     if(availableStay?.space != null ){
       if(!buttonState){
+        console.log("entering ");
         setAvailableStay(prevState => ({ ...prevState, space: null }));
       }
 
@@ -61,15 +62,11 @@ export default function AvailableStay({
 
 
   const increaseCardWidthToLeft = (event: any) => {
-    console.log("left",isPopoverOpen);
-    setIsPopoverOpen(true)
     event.stopPropagation();
-    console.log("left 2",isPopoverOpen);
-    setIsPopoverOpen(true)
     const newDepartDate = availableStay.arriveDate
       .clone()
       .format('DD-MMMM-YYYY');
-      console.log("left 3",isPopoverOpen);
+
 
     if (!unavailableDate.includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
@@ -77,15 +74,15 @@ export default function AvailableStay({
         arriveDate: prev.arriveDate.clone().subtract(1, 'day'),
       }));
     }
-    console.log("left 4",isPopoverOpen);
+
     openPop()
   };
 
   const decreaseCardWidthToLeft = (event: any) => {
-    console.log("left d",isPopoverOpen);
-    setIsPopoverOpen(true)
+
+
     event.stopPropagation();
-    setIsPopoverOpen(true)
+
     const newDepartDate = date.clone().add(1, 'day');
 
     if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
@@ -97,10 +94,7 @@ export default function AvailableStay({
   };
 
   const increaseCardWidthToRight = (event: any) => {
-    console.log("right",isPopoverOpen);
-    setIsPopoverOpen(true)
     event.stopPropagation();
-    setIsPopoverOpen(true)
     const newDepartDate = date.clone().add(1, 'day');
 
     if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
@@ -112,10 +106,7 @@ export default function AvailableStay({
   };
 
   const decreaseCardWidthToRight = (event: any) => {
-    console.log("right d",isPopoverOpen);
-    setIsPopoverOpen(true)
     event.stopPropagation();
-    setIsPopoverOpen(true)
     const newArriveDate = date.clone().subtract(1, 'day');
 
     if (!unavailableDate.includes(newArriveDate.format('DD-MMMM-YYYY'))) {
@@ -158,7 +149,7 @@ export default function AvailableStay({
       resetAvailableStay={resetAvailableStay}
       isPopoverOpen={isPopoverOpen}
       setIsPopoverOpen={setIsPopoverOpen}
-      
+
       id={date.format('DD-MMM-YYYY')}
     >
 

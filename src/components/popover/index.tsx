@@ -10,12 +10,18 @@ export default function PopoverCard({
   setIsPopoverOpen,
   // cardPlace
 }: PopoverCardProps) {
-  const { setButtonState,setammountOfStayDates} = useMyContext();
+  const { setButtonState,setammountOfStayDates,availableStay,setAvailableStay} = useMyContext();
+
 
   const hidePopever=()=>{
     setIsPopoverOpen(false)
     setButtonState(false)
     setammountOfStayDates(0)
+    setAvailableStay({
+      space: null,
+      departDate: '',
+      arriveDate: '',
+    }) 
   }
   return (
     <div

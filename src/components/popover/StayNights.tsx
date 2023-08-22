@@ -2,6 +2,7 @@
 import { Moment } from 'moment';
 import { GradientButton } from '../Buttons';
 import { Heading4 } from '../Typography';
+import { useMyContext } from '@/app.context';
 
 interface IProps {
   arriveDate: Moment;
@@ -16,7 +17,41 @@ export default function StayNights({
   ammountOfStayDates,
   spaceIndex,
 }: IProps) {
-  
+  console.log("date",arriveDate, departDate, ammountOfStayDates,spaceIndex);
+
+
+  const { bookingarry, setbookingarry, 
+    setButtonState, } = useMyContext()
+
+
+
+
+
+  const addBooking = () => {
+    console.log("bo",bookingarry);
+    const newBooking={
+      user:{
+        name:"Sayman",
+        avatar:"/assets/test_stay.jpg"
+      },
+      arriveDate:arriveDate.format('DD-MMMM-YYYY'),
+      departDate:departDate.format('DD-MMMM-YYYY'),
+      type:"mystay",
+      comment:"Hey everyone, I’m bringing snacks and drinks! Could everyone pick a"
+
+
+    }
+    if(spaceIndex=== 0){
+      setbookingarry({...bookingarry,stays:[...bookingarry.stays,newBooking]})
+      setButtonState(false)
+    }
+    else{
+      alert("this is under working")
+
+    }
+
+  }
+
   return (
     <>
       <div className="flex flex-col items-center py-3">
@@ -32,17 +67,18 @@ export default function StayNights({
       </div>
 
       <GradientButton
-        onClick={() => {
-          alert('working');
-          // spacesX[spaceIndex].stays.push({
-          //   user: {
-          //     name: 'shamim Monster',
-          //   },
-          //   type: 'unavailable',
-          //   arriveDate: arriveDate.format('DD-MMMM-YYYY'),
-          //   departDate: departDate.format('DD-MMMM-YYYY'),
-          // });
-        }}
+        onClick={addBooking}
+        // onClick={() => {
+        //   alert('working');
+        // spacesX[spaceIndex].stays.push({
+        //   user: {
+        //     name: 'shamim Monster',
+        //   },
+        //   type: 'unavailable',
+        //   arriveDate: arriveDate.format('DD-MMMM-YYYY'),
+        //   departDate: departDate.format('DD-MMMM-YYYY'),
+        // });
+        // }}
         className="w-full"
         text="Schedule My Stay"
       />
