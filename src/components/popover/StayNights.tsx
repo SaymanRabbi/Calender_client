@@ -1,8 +1,7 @@
-import React from 'react';
 
 import { Moment } from 'moment';
-import { Heading4 } from '../Typography';
 import { GradientButton } from '../Buttons';
+import { Heading4 } from '../Typography';
 
 interface IProps {
   arriveDate: Moment;
@@ -17,6 +16,7 @@ export default function StayNights({
   ammountOfStayDates,
   spaceIndex,
 }: IProps) {
+  
   return (
     <>
       <div className="flex flex-col items-center py-3">

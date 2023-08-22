@@ -5,6 +5,7 @@ import { CalendarLayer } from '@/icons';
 import Days from './Days';
 import MonthIndicator from './MonthIndicator';
 
+import { useMyContext } from '@/app.context';
 import { TodayButton } from '../Buttons';
 import { Body1, Body2, Heading3 } from '../Typography';
 
@@ -125,6 +126,8 @@ const stays1 = {
     },
   ],
 };
+const {bookingarry,setbookingarry} = useMyContext()
+setbookingarry(stays1)
 const stays2 = {
   property: 'Bedroom 2',
   guestLimit: '2',
@@ -229,7 +232,7 @@ const stays2 = {
     },
   ],
 };
-const spacesX = [stays1, stays2, stays2];
+const spacesX = [bookingarry, stays2, stays2];
 // const spacesY = [stays1, stays2];
 
 function CalenderTest() {
