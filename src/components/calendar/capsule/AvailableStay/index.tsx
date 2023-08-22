@@ -26,21 +26,46 @@ export default function AvailableStay({
   const { buttonState,setButtonState,pop, setPop } = useMyContext();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-
+// console.log("avail", availableStay ); 
+// console.log("dateddd", date.format('DD-MMMM-YYYY') );
 
   useEffect(() => {
 
     if(availableStay?.space != null ){
       if(!buttonState){
-        console.log("entering ");
         setAvailableStay(prevState => ({ ...prevState, space: null }));
       }
 
     }
   }, [buttonState,availableStay.space,setAvailableStay]);
 
+  // useEffect(() => {
+  //   console.log("sueeefect entered");
+  //   if(availableStay?.arriveDate===""){
+  //     console.log("use value entered");
+  //     setAvailableStay((prev: any) => ({
+  //       space: spaceIndex,
+  //       arriveDate: date,
+  //       departDate: date,
+  //     }));
+  //   }
+  // }, [availableStay?.arriveDate]);
+
+
+  // setAvailableStay((prev: any) => ({
+  //   space: spaceIndex,
+  //   arriveDate: date,
+  //   departDate: date,
+  // }));
+
+
+  const openPop=()=>{
+    setPop(true)
+  }
+
 
   const handleAvailableStay = (directiontoLeft: boolean) => {
+    console.log("enttt");
     setButtonState(true)
     if (directiontoLeft) {
       setAvailableStay({
@@ -56,9 +81,6 @@ export default function AvailableStay({
       });
     }
   };
-  const openPop=()=>{
-    setPop(true)
-  }
 
 
   const increaseCardWidthToLeft = (event: any) => {
@@ -135,6 +157,7 @@ export default function AvailableStay({
       )}
       component={
         <StayNights
+        date={date}
           spaceIndex={spaceIndex}
           arriveDate={moment(availableStay.arriveDate)}
           departDate={moment(availableStay.departDate)}

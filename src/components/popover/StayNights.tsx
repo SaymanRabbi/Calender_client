@@ -3,12 +3,14 @@ import { Moment } from 'moment';
 import { GradientButton } from '../Buttons';
 import { Heading4 } from '../Typography';
 import { useMyContext } from '@/app.context';
+import { useEffect, useState } from 'react';
 
 interface IProps {
   arriveDate: Moment;
   departDate: Moment;
   ammountOfStayDates: number;
   spaceIndex: number;
+  date?:any;
 }
 
 export default function StayNights({
@@ -16,26 +18,31 @@ export default function StayNights({
   departDate,
   ammountOfStayDates,
   spaceIndex,
+  date,
 }: IProps) {
-  console.log("date",arriveDate, departDate, ammountOfStayDates,spaceIndex);
+  // console.log("date is", arriveDate.format('DD-MMMM-YYYY'));
 
-
-  const { bookingarry, setbookingarry, 
+  const { bookingarry, setbookingarry,
     setButtonState, } = useMyContext()
+const [dateCheck, setDateCheck]=useState(false)
 
-
-
-
+useEffect(()=>{
+  if(arriveDate.format('DD-MMMM-YYYY')=="Invalid date"){
+    // console.log("not found date"); 
+    setDateCheck(true)
+  }
+  else{setDateCheck(false)}
+},[arriveDate])
 
   const addBooking = () => {
-    console.log("bo",bookingarry);
+    // console.log("bo",bookingarry);
     const newBooking={
       user:{
         name:"Sayman",
         avatar:"/assets/test_stay.jpg"
       },
-      arriveDate:arriveDate.format('DD-MMMM-YYYY'),
-      departDate:departDate.format('DD-MMMM-YYYY'),
+      arriveDate:dateCheck? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY') :arriveDate.format('DD-MMMM-YYYY'),
+      departDate:dateCheck? date.format('DD-MMMM-YYYY'):departDate.format('DD-MMMM-YYYY'),
       type:"mystay",
       comment:"Hey everyone, I’m bringing snacks and drinks! Could everyone pick a"
 
@@ -56,13 +63,13 @@ export default function StayNights({
     <>
       <div className="flex flex-col items-center py-3">
         <Heading4>
-          {ammountOfStayDates} night {spaceIndex}
+          {dateCheck? 1 : ammountOfStayDates} night {spaceIndex}
         </Heading4>
 
         <div className="flex gap-3">
-          <Heading4>{arriveDate.format('ddd MMM. DD')}</Heading4>
+          <Heading4>{dateCheck? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY')  :arriveDate.format('DD-MMMM-YYYY')}</Heading4>
           <Heading4>{'->'}</Heading4>
-          <Heading4>{departDate.format('ddd MMM. DD')}</Heading4>
+          <Heading4>{dateCheck? date.format('DD-MMMM-YYYY'):departDate.format('DD-MMMM-YYYY')}</Heading4>
         </div>
       </div>
 
