@@ -13,8 +13,8 @@ interface IProps {
   component: ReactNode;
   resetAvailableStay?: any;
   ammountOfStayDates: number;
-  isPopoverOpen:boolean;
-  setIsPopoverOpen:Function ;
+  isPopoverOpen: boolean;
+  setIsPopoverOpen: Function;
 }
 
 function CalendarPopover({
@@ -30,9 +30,9 @@ function CalendarPopover({
     null
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
-  const {pop, setPop } = useMyContext();
+  const { pop, setPop, cardContext, setCardContext } = useMyContext();
   // const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  console.log("checking new", isPopoverOpen) ;
+  const [cardPlace, setCardPlace] = useState(0)
 
 
 
@@ -44,16 +44,20 @@ function CalendarPopover({
       strategy: 'fixed',
     }
   );
-  useEffect(()=>{
+  // console.log("card", cardContext);
+  useEffect(() => {
     // console.log("pop", pop);
-    if(pop){
+    if (pop) {
       // const buttonEm=document.querySelector(".targetedElement")
       // console.log("em", buttonEm) ;
       // buttonEm?.click()
     }
-  },[pop])
+  }, [pop])
 
   useEffect(() => {
+    const cardValue = -(ammountOfStayDates * 80 / 2) - 160
+    console.log("ss", cardValue);
+    setCardPlace(cardValue)
     const destinationContainer = document.getElementById('destination');
     if (!destinationContainer) {
       const newContainer = document.createElement('div');
@@ -64,12 +68,13 @@ function CalendarPopover({
     if (referenceElement && popperElement) {
       createPopper(referenceElement, popperElement, {
         placement: 'bottom',
-        strategy: 'fixed',
+        strategy: 'absolute',
         modifiers: [
           {
             name: 'offset',
             options: {
-              offset: [-160 - 20.6 * ammountOfStayDates, 70],
+              offset: [0, 70],
+              // offset: [-160 - 20.6 * ammountOfStayDates, 70],
             },
           },
         ],
@@ -97,8 +102,26 @@ function CalendarPopover({
     };
   }, [popperElement, referenceElement, resetAvailableStay]);
 
-  const togglePopover = () => {
+  const togglePopover = (event) => {
     // setIsPopoverOpen((prev) => !prev);
+    const element = event.currentTarget;
+    const rect = element.getBoundingClientRect();
+    const offsetLeft = rect.left;
+    const offsetTop = rect.top;
+    const offsetWidth = rect.width;
+    const offsetHeight = rect.height;
+    // setCardContext(rect)
+
+    console.log("Offset Left:", offsetLeft);
+    console.log("Offset Top:", offsetTop);
+    console.log("Offset Width:", offsetWidth);
+    console.log("Offset Height:", offsetHeight);
+
+
+    // const element = document.querySelector(".offsetValue");
+    // const rect = element.getBoundingClientRect();
+    // setCardContext(rect)
+
 
 
     // changed by asad
@@ -111,14 +134,14 @@ function CalendarPopover({
     }
   };
 
-    // const closePopover = (value: boolean) => {
-    //   setIsPopoverOpen(value);
-    // };
+  // const closePopover = (value: boolean) => {
+  //   setIsPopoverOpen(value);
+  // };
 
   return (
     <>
       {/* eslint-disable */}
-      <div  ref={setReferenceElement} onClick={togglePopover}>
+      <div className='offsetValue' ref={setReferenceElement} onClick={togglePopover}>
         {children}
       </div>
       {isPopoverOpen &&
@@ -126,13 +149,15 @@ function CalendarPopover({
           <div
             ref={setPopperElement}
             style={{ ...styles.popper, display: 'block' }}
+
             {...attributes.popper}
             id={id}
-            className="popover"
+            className={`popover bg-red-400`}
           >
             <PopoverCard
-             setIsPopoverOpen={setIsPopoverOpen}
-             >
+              setIsPopoverOpen={setIsPopoverOpen}
+              cardPlace={cardPlace} 
+            >
               {component}
             </PopoverCard>
           </div>,
@@ -144,7 +169,7 @@ function CalendarPopover({
 }
 
 CalendarPopover.defaultProps = {
-  resetAvailableStay: () => {},
+  resetAvailableStay: () => { },
 };
 
 export default CalendarPopover;

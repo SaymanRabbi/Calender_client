@@ -1,4 +1,3 @@
-import { useMyContext } from '@/app.context';
 import React, { PropsWithChildren } from 'react';
 
 interface WrapperElementProps extends PropsWithChildren {
@@ -16,7 +15,7 @@ function DashboardWrapper({
   containerClassName,
 }: WrapperProps) {
 
-  const { data } = useMyContext();
+
 
   return (
     <div className={`px-3 bg-gray-100 min-h-[calc(100vh-486px)] ${className}`}>

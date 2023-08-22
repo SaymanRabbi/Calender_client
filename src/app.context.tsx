@@ -33,6 +33,9 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   const [isPopoverOpen,setIsPopoverOpen]=useState<boolean>(false)
   const [buttonState, setButtonState]=useState<boolean>(true)
   const [pop, setPop]=useState<boolean>(false)
+  const [capsuleParentLoc, setCapsuleParentLoc]=useState()
+  // const [capsuleP, setCapsuleP]=useState(0)
+  const [cardContext, setCardContext]=useState(0)
 
   // const updateData = (newData: string) => {
   //   setData(newData);
@@ -44,7 +47,13 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     buttonState,
     setButtonState,
     pop,
-    setPop, 
+    setPop,
+    capsuleParentLoc,
+    setCapsuleParentLoc,
+    // capsuleP,
+    // setCapsuleP,
+    cardContext,
+    setCardContext,
   };
 
   return (
