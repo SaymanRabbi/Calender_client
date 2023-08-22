@@ -1,9 +1,9 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
-import { usePopper } from 'react-popper';
+import { useMyContext } from '@/app.context';
 import { createPopper } from '@popperjs/core';
 import ReactDOM from 'react-dom';
-import { useMyContext } from '@/app.context';
+import { usePopper } from 'react-popper';
 import PopoverCard from '../popover';
 
 
@@ -55,8 +55,7 @@ function CalendarPopover({
   }, [pop])
 
   useEffect(() => {
-    const cardValue = -(ammountOfStayDates * 80 / 2) - 160
-    console.log("ss", cardValue);
+    const cardValue = -(ammountOfStayDates * 20.6) - 160
     setCardPlace(cardValue)
     const destinationContainer = document.getElementById('destination');
     if (!destinationContainer) {
@@ -64,7 +63,10 @@ function CalendarPopover({
       newContainer.id = 'destination';
       document.body.appendChild(newContainer);
     }
-
+    const dynamic =  Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates <2 ?0 : 33 
+    const dynamicTow = (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ?0 : ammountOfStayDates
+    console.log("dynamic", dynamic);
+    console.log("dynamicTow", dynamicTow);
     if (referenceElement && popperElement) {
       createPopper(referenceElement, popperElement, {
         placement: 'bottom',
@@ -73,8 +75,11 @@ function CalendarPopover({
           {
             name: 'offset',
             options: {
-              offset: [0, 70],
-              // offset: [-160 - 20.6 * ammountOfStayDates, 70],
+              // 33 jodi 1 er besi r na hole 12  
+              // want to middle of the button
+              // offset: [cardValue, 70],
+              // (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates <2) ?12 : 33 * (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ?1 : ammountOfStayDates
+              offset: [-160 -   dynamic * dynamicTow, 70],
             },
           },
         ],
@@ -156,7 +161,7 @@ function CalendarPopover({
           >
             <PopoverCard
               setIsPopoverOpen={setIsPopoverOpen}
-              cardPlace={cardPlace} 
+              // cardPlace={cardPlace} 
             >
               {component}
             </PopoverCard>
