@@ -122,16 +122,23 @@ const stays1 = {
         'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
 
       arriveDate: '06-August-2023',
-      departDate: '8-August-2023',
+      departDate: '08-August-2023',
     },
-  ],
+  ], 
 };
-
 const stays2 = {
-  property: 'Bedroom 2',
-  guestLimit: '2',
+  property: 'Bedroom 1',
+  guestLimit: '4',
   type: 'sleeping space',
   stays: [
+    {
+      user: {
+        name: ';Cookie Monster l',
+      },
+      type: 'mystay',
+      arriveDate: '16-August-2023',
+      departDate: '18-August-2023',
+    },
     {
       user: {
         name: 'Cookie Monster',
@@ -140,48 +147,8 @@ const stays2 = {
       type: 'mystay',
       comment:
         'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
-      arriveDate: '22-July-2023',
-      departDate: '25-July-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '20-August-2023',
-      departDate: '21-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '21-August-2023',
-      departDate: '22-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '22-August-2023',
-      departDate: '23-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '01-April-2023',
-      departDate: '02-April-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '02-April-2023',
-      departDate: '03-April-2023',
+      arriveDate: '18-August-2023',
+      departDate: '19-August-2023',
     },
     {
       user: {
@@ -189,48 +156,70 @@ const stays2 = {
         avater: '/assets/duckey.jpg',
       },
       type: 'mystay',
-      arriveDate: '25-July-2023',
-      departDate: '28-July-2023',
+      arriveDate: '19-August-2023',
+      departDate: '20-August-2023',
     },
     {
       user: {
-        name: 'Wonder Woman',
-        avater: '/assets/wonderwoman.jpg',
+        name: 'Cookie Monster',
+      },
+      type: 'mystay',
+      arriveDate: '21-August-2023',
+      departDate: '24-August-2023',
+    },
+    {
+      user: {
+        name: 'Cookie Monster',
+      },
+      type: 'unavailable',
+      arriveDate: '25-August-2023',
+      departDate: '26-August-2023',
+    },
+    {
+      user: {
+        name: 'Cookie Monster',
+      },
+      type: 'unavailable',
+      arriveDate: '26-August-2023',
+      departDate: '27-August-2023',
+    },
+    {
+      user: {
+        name: 'Cookie Monster',
+      },
+      type: 'unavailable',
+      arriveDate: '27-August-2023',
+      departDate: '28-August-2023',
+    },
+    {
+      user: {
+        name: 'Shamim',
+        avater: '/assets/dogu.jpg',
       },
       type: 'mystay',
       comment:
         'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
 
-      arriveDate: '29-July-2023',
-      departDate: '04-August-2023',
+      arriveDate: '29-August-2023',
+      departDate: '01-September-2023',
     },
+    {
+      user: {
+        name: 'TEST',
+        avater: '/assets/test_stay.jpg',
+      },
+      type: 'mystay',
+      comment:
+        'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
 
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '05-August-2023',
-      departDate: '06-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
       arriveDate: '06-August-2023',
-      departDate: '07-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '07-August-2023',
       departDate: '08-August-2023',
     },
   ],
 };
+
+
+
 
 // const spacesY = [stays1, stays2];
 
@@ -419,7 +408,7 @@ function CalenderTest() {
             </button>
           </div>
         </div>
-        <div className="w-full"> 
+        <div className="w-full">
           <div className="flex flex-grow flex-shrink-0 flex-nowrap scroll-smooth">
             <div className="relative flex w-full border-blue-200 ">
             <div className=' absolute  top-[5px] left-[200px] z-[999999] font-semibold'> {currentMonth?.format('MMMM')}</div>

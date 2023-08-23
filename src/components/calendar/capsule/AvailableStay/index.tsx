@@ -36,7 +36,7 @@ useEffect(()=>{
   // }
 },[])
 
-console.log("data", bookingarry ); 
+// console.log("data", bookingarry );
 
   useEffect(() => {
 
@@ -95,7 +95,8 @@ const [allDates, setAllDates] = useState([]);
 const getDates=(spaceI)=>{
   const stays = bookingarry[spaceI]?.stays
 const formatDate = (date) => {
-  const day = date.getDate();
+  // const day = date.getDate();
+  const day = String(date.getDate()).padStart(2, '0');
   const month = date.toLocaleString('default', { month: 'long' });
   const year = date.getFullYear();
   return `${day}-${month}-${year}`;
@@ -123,6 +124,8 @@ const getDatesBetween = (startDate, endDate) => {
   }, []);
   const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
 
+
+  console.log("all dates", uniqueDates );
  return uniqueDates
 }
 
@@ -171,6 +174,7 @@ const getDatesBetween = (startDate, endDate) => {
     const newDepartDate = availableStay.arriveDate
       .clone().subtract(0, 'day')
       .format('DD-MMMM-YYYY');
+      console.log("new date", newDepartDate );
 
     if (!unavailableDate.includes(newDepartDate ) && !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
