@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React,  { useRef } from 'react';
 
 import { useMyContext } from '@/app.context';
 import { Go, GoLeft } from '@/icons';
@@ -20,6 +20,8 @@ export default function AvailableStayCapsule({
   );
   setammountOfStayDates(ammountOfStayDate)
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
+const { bookingarry, setbookingarry,}=useMyContext()
+  // console.log("availableStay", bookingarry  );
 
 //   useEffect(()=>{
 //     const element = document.querySelector(".offsetValue");
@@ -37,14 +39,8 @@ export default function AvailableStayCapsule({
 
   return (
     <div
-
-    // style={{
-    //   position:"absolute",
-    //       left:`${capsuleP}px`,
-    // }}
      ref={childRef} className={`absolute right-[10px] top-1/2 -translate-y-1/2 z-60`}>
       <div
-
         style={{
           width: `${stayWidth}px`,
 
