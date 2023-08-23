@@ -23,8 +23,9 @@ export default function StayNights({
   // console.log("date is", arriveDate.format('DD-MMMM-YYYY'));
 
   const { bookingarry, setbookingarry,
-    setButtonState, } = useMyContext()
+    setButtonState,setAvailableStay  } = useMyContext()
   const [dateCheck, setDateCheck] = useState(false)
+
 
   useEffect(() => {
     if (arriveDate.format('DD-MMMM-YYYY') == "Invalid date") {
@@ -34,6 +35,8 @@ export default function StayNights({
     else { setDateCheck(false) }
   }, [arriveDate])
 
+
+
   const addBooking = () => {
 
     const newBooking = {
@@ -41,7 +44,7 @@ export default function StayNights({
         name: "Sayman",
         avatar: "/assets/test_stay.jpg"
       },
-      arriveDate: dateCheck ? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY') : arriveDate.format('DD-MMMM-YYYY'),
+      arriveDate: dateCheck ? date.clone().subtract(1, 'day').format ('DD-MMMM-YYYY') : arriveDate.format('DD-MMMM-YYYY'),
       departDate: dateCheck ? date.format('DD-MMMM-YYYY') : departDate.format('DD-MMMM-YYYY'),
       type: "mystay",
       comment: "Hey everyone, I’m bringing snacks and drinks! Could everyone pick a"
@@ -54,6 +57,13 @@ export default function StayNights({
     othersData.splice(spaceIndex, 0, newModifiedData);
 
     setbookingarry(othersData)
+
+    setAvailableStay({
+      space: null,
+      departDate: '',
+      arriveDate: '',
+    })
+
     setButtonState(false)
     // if(spaceIndex=== 0){
     //   setbookingarry({...bookingarry,stays:[...bookingarry.stays,newBooking]})
@@ -76,7 +86,10 @@ export default function StayNights({
         <div className="flex gap-3">
           <Heading4>{dateCheck ? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY') : arriveDate.format('DD-MMMM-YYYY')}</Heading4>
           <Heading4>{'->'}</Heading4>
-          <Heading4>{dateCheck ? date.format('DD-MMMM-YYYY') : departDate.format('DD-MMMM-YYYY')}</Heading4>
+          <Heading4>{dateCheck ?
+           date.format('DD-MMMM-YYYY')
+
+            : departDate.format('DD-MMMM-YYYY')}</Heading4>
         </div>
       </div>
 

@@ -48,6 +48,13 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   const [ammountOfStayDates,setammountOfStayDates] = useState<number>(0)
   const [bookingarry,setbookingarry] = useState<any>([])
   const [getMonth, setGetMonth] = useState<any>([])
+  const [unavailabeData, setUnavailablData] = useState<any>({
+    dayIndex:"",
+    dataIndex:"",
+    arriveDate:"",
+    departDate:""
+
+  })
   const [availableStay, setAvailableStay] = useState<any>({
     space: null,
     departDate: '',
@@ -77,7 +84,8 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     setbookingarry,
     availableStay,
     setAvailableStay,
-    getMonth, setGetMonth, 
+    getMonth, setGetMonth,
+    unavailabeData, setUnavailablData,
   };
 
   return (

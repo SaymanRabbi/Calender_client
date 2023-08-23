@@ -36,6 +36,7 @@ useEffect(()=>{
   // }
 },[])
 
+console.log("data", bookingarry ); 
 
   useEffect(() => {
 
@@ -135,7 +136,7 @@ const getDatesBetween = (startDate, endDate) => {
     // console.log("space index", spaceIndex );
     setButtonState(true)
     if (directiontoLeft) {
-      const leftDate=date.clone().subtract(2, 'days').format('DD-MMMM-YYYY');
+      const leftDate=date.clone().subtract(1, 'days').format('DD-MMMM-YYYY');
       if(!getDates(spaceIndex).includes(leftDate)) {
       setAvailableStay({
         space: spaceIndex,
@@ -148,7 +149,7 @@ const getDatesBetween = (startDate, endDate) => {
       }
 
     } else {
-      const rightDate=date.clone().add(1, 'day').format('DD-MMMM-YYYY');
+      const rightDate=date.clone().add(0, 'day').format('DD-MMMM-YYYY');
       if(!getDates(spaceIndex).includes(rightDate)) {
         setAvailableStay({
           space: spaceIndex,
@@ -168,7 +169,7 @@ const getDatesBetween = (startDate, endDate) => {
   const increaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
     const newDepartDate = availableStay.arriveDate
-      .clone().subtract(1, 'day')
+      .clone().subtract(0, 'day')
       .format('DD-MMMM-YYYY');
 
     if (!unavailableDate.includes(newDepartDate ) && !getDates(spaceIndex).includes(newDepartDate)) {
@@ -200,7 +201,7 @@ const getDatesBetween = (startDate, endDate) => {
   const increaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
 
-    const newDepartDate = date.clone().add(1, 'day');
+    const newDepartDate = date.clone().add(0, 'day');
     if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY')) &&
     !getDates(spaceIndex).includes(newDepartDate.format('DD-MMMM-YYYY'))) {
       setAvailableStay((prev: any) => ({

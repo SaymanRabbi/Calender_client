@@ -269,6 +269,7 @@ function CalenderTest() {
   const { getMonth, setGetMonth,availableStay,setAvailableStay} = useMyContext();
 
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
+  // setGetMonth(currentMonth.format('MMMM'))
   const [scrollIndex, setScrollIndex] = useState<any>(null);
 
   // const [availableStay, setAvailableStay] = useState<any>({
@@ -418,10 +419,10 @@ function CalenderTest() {
             </button>
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full"> 
           <div className="flex flex-grow flex-shrink-0 flex-nowrap scroll-smooth">
             <div className="relative flex w-full border-blue-200 ">
-            {/* <div className=' absolute  top-[0px] left-[200px] z-[999999] font-semibold'> {getMonth}</div> */}
+            <div className=' absolute  top-[5px] left-[200px] z-[999999] font-semibold'> {currentMonth?.format('MMMM')}</div>
               <div className="w-[180px] max-md:mt-16 max-md:absolute left-0 max-md:z-10">
                 <div>
                   <div className=" md:flex hidden bg-transparent md:bg-white flex-col justify-center flex-shrink-0 w-[180px] items-start h-16 px-3 " />

@@ -116,7 +116,8 @@ function Days({
             <div className="flex items-end justify-center h-8">
             {/* <Body1 className=' text-black   '>{gettingMonth(date)}</Body1> */}
               {date.date() === 1 ? (
-                <Body1 className=' text-black   '>{date.format('MMMM' )}</Body1>
+                // <Body1 className=' text-black   '>{date.format('MMMM' )}</Body1>
+                <span className="h-8" />
               ) : (
                 <span className="h-8" />
                 // <Body1>{date.format('MMMM')}</Body1>
@@ -179,6 +180,8 @@ function Days({
                           return (
                             <UnavailableStay
                               key={`stay-${stayIndex + 1}`}
+                              dayIndex={stayIndex} 
+                              spaceIndex={index}
                               stay={stay}
                               date={date}
                             />

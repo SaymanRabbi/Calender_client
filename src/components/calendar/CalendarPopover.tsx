@@ -15,6 +15,10 @@ interface IProps {
   ammountOfStayDates: number;
   isPopoverOpen: boolean;
   setIsPopoverOpen: Function;
+  arriveDate?:any;
+  departDate?:any;
+  dayIndex?:any;
+  spaceIndex?:any;
 }
 
 function CalendarPopover({
@@ -24,13 +28,17 @@ function CalendarPopover({
   resetAvailableStay,
   isPopoverOpen,
   setIsPopoverOpen,
+  arriveDate,
+  departDate,
+  dayIndex,
+  spaceIndex,
 }: IProps) {
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
     null
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
-  const { pop,ammountOfStayDates} = useMyContext();
-//  console.log("ammountOfStayDates", ammountOfStayDates);
+  const { pop, ammountOfStayDates } = useMyContext();
+  //  console.log("ammountOfStayDates", ammountOfStayDates);
   // const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [cardPlace, setCardPlace] = useState(0)
 
@@ -63,8 +71,8 @@ function CalendarPopover({
       newContainer.id = 'destination';
       document.body.appendChild(newContainer);
     }
-    const dynamic =  Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates <2 ?0 : 33 
-    const dynamicTow = (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ?0 : ammountOfStayDates
+    const dynamic = Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates < 2 ? 0 : 33
+    const dynamicTow = (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ? 0 : ammountOfStayDates
     // console.log("dynamic", dynamic);
     // console.log("dynamicTow", dynamicTow);
     if (referenceElement && popperElement) {
@@ -75,11 +83,11 @@ function CalendarPopover({
           {
             name: 'offset',
             options: {
-              // 33 jodi 1 er besi r na hole 12  
+              // 33 jodi 1 er besi r na hole 12
               // want to middle of the button
               // offset: [cardValue, 70],
               // (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates <2) ?12 : 33 * (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ?1 : ammountOfStayDates
-              offset: [-160 -   dynamic * dynamicTow, 70],
+              offset: [-160 - dynamic * dynamicTow, 70],
             },
           },
         ],
@@ -107,7 +115,7 @@ function CalendarPopover({
     };
   }, [popperElement, referenceElement, resetAvailableStay]);
 
-  const togglePopover = (event:any) => {
+  const togglePopover = (event: any) => {
     // setIsPopoverOpen((prev) => !prev);
     const element = event.currentTarget;
     const rect = element.getBoundingClientRect();
@@ -151,7 +159,7 @@ function CalendarPopover({
           >
             <PopoverCard
               setIsPopoverOpen={setIsPopoverOpen}
-              // cardPlace={cardPlace} 
+            // cardPlace={cardPlace}
             >
               {component}
             </PopoverCard>
