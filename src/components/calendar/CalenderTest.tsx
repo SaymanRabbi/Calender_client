@@ -1,5 +1,5 @@
 import moment, { Moment } from 'moment';
-import React,  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // import { usePopper } from 'react-popper';
 import { CalendarLayer } from '@/icons';
 import Days from './Days';
@@ -226,7 +226,7 @@ const stays2 = {
 function CalenderTest() {
 
   const { bookingarry, setbookingarry } = useMyContext()
-  const [spaces, setSpaces] = useState([]);
+  const [spaces, setSpaces] = useState<any[]>([]);
 
     useEffect(() => {
       const allArr=[stays1, stays2, stays2]
@@ -255,7 +255,7 @@ function CalenderTest() {
   const [dates, setDates] = useState<Moment[]>([]);
 
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
-  const { getMonth, setGetMonth,availableStay,setAvailableStay} = useMyContext();
+  const {availableStay,setAvailableStay} = useMyContext();
 
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   // setGetMonth(currentMonth.format('MMMM'))
@@ -411,7 +411,7 @@ function CalenderTest() {
         <div className="w-full">
           <div className="flex flex-grow flex-shrink-0 flex-nowrap scroll-smooth">
             <div className="relative flex w-full border-blue-200 ">
-            <div className=' absolute  top-[5px] left-[200px] z-[999999] font-semibold'> {currentMonth?.format('MMMM')}</div>
+            {/* <div className=' absolute  top-[6.2px] left-[25%] z-[999999] font-semibold'> {currentMonth?.format('MMMM')}</div> */}
               <div className="w-[180px] max-md:mt-16 max-md:absolute left-0 max-md:z-10">
                 <div>
                   <div className=" md:flex hidden bg-transparent md:bg-white flex-col justify-center flex-shrink-0 w-[180px] items-start h-16 px-3 " />
@@ -423,7 +423,7 @@ function CalenderTest() {
                         <CalendarLayer />
                       </div>
                       <Body1 className="max-md:absolute max-md:text-xs max-md:top-[1px] max-md:left-3 max-md:text-black text-gray-400">
-                        {space?.property}
+                        {space?.property }
                       </Body1>
 
                       <Body2 className="hidden text-gray-400 md:flex">

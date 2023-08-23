@@ -1,20 +1,20 @@
 // import { Moment } from 'moment';
 import { useMyContext } from '@/app.context';
 import StayNights from '@/components/popover/StayNights';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import { useEffect, useState } from 'react';
 import CalendarPopover from '../../CalendarPopover';
 import AvailableStayCapsulHover from './AvailableStayCapsulHover';
 import AvailableStayCapsule from './AvailableStayCapsule';
 
 
-// interface IProps {
-//   date: Moment;
-//   unavailableDate: (string | boolean)[];
-//   spaceIndex: number;
-//   availableStay: any;
-//   setAvailableStay: any;
-// }
+interface IProps {
+  date: Moment;
+  unavailableDate: (string | boolean)[];
+  spaceIndex: number;
+  availableStay: any;
+  setAvailableStay: any;
+}
 
 export default function AvailableStay({
   date,
@@ -23,26 +23,12 @@ export default function AvailableStay({
   availableStay,
   setAvailableStay,
 }: any) {
-  const { buttonState,setButtonState,pop, setPop,bookingarry, setbookingarry } = useMyContext();
+  const { buttonState,setButtonState, setPop,bookingarry} = useMyContext();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-const [allbookingdate, setallbookingdate]=useState([])
-
-useEffect(()=>{
-  // if(bookingarry){
-  //   let booking=[]
-  //   const alldata=bookingarry.stays.foreach(s=>{
-
-  //   })
-  // }
-},[])
-
-// console.log("data", bookingarry );
-
   useEffect(() => {
-
     if(availableStay?.space != null ){
       if(!buttonState){
-        setAvailableStay(prevState => ({ ...prevState, space: null }));
+        setAvailableStay((prevState:any) => ({ ...prevState, space: null }));
       }
 
     }
@@ -92,9 +78,9 @@ const [allDates, setAllDates] = useState([]);
 
 // getting dates
 
-const getDates=(spaceI)=>{
+const getDates=(spaceI:any)=>{
   const stays = bookingarry[spaceI]?.stays
-const formatDate = (date) => {
+const formatDate = (date:any) => {
   // const day = date.getDate();
   const day = String(date.getDate()).padStart(2, '0');
   const month = date.toLocaleString('default', { month: 'long' });
@@ -102,7 +88,7 @@ const formatDate = (date) => {
   return `${day}-${month}-${year}`;
 };
 
-const getDatesBetween = (startDate, endDate) => {
+const getDatesBetween = (startDate:any, endDate:any) => {
   const dates = [];
   const currentDate = new Date(startDate);
   endDate = new Date(endDate);
@@ -115,7 +101,7 @@ const getDatesBetween = (startDate, endDate) => {
   return dates;
 };
 
-  const dates = stays?.reduce((acc, stay) => {
+  const dates = stays?.reduce((acc:any, stay:any) => {
     if (stay.arriveDate && stay.departDate) {
       const stayDates = getDatesBetween(stay.arriveDate, stay.departDate);
       return [...acc, ...stayDates];
@@ -247,7 +233,7 @@ const getDatesBetween = (startDate, endDate) => {
         )
       )}
       component={
-        <StayNights
+        <StayNights 
         date={date}
           spaceIndex={spaceIndex}
           arriveDate={moment(availableStay.arriveDate)}

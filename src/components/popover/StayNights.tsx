@@ -1,15 +1,15 @@
 
+import { useMyContext } from '@/app.context';
 import { Moment } from 'moment';
+import { useEffect, useState } from 'react';
 import { GradientButton } from '../Buttons';
 import { Heading4 } from '../Typography';
-import { useMyContext } from '@/app.context';
-import { useEffect, useState } from 'react';
 
 interface IProps {
-  arriveDate: Moment;
-  departDate: Moment;
-  ammountOfStayDates: number;
-  spaceIndex: number;
+  arriveDate?: Moment;
+  departDate?: Moment;
+  ammountOfStayDates?: number;
+  spaceIndex?: number;
   date?: any;
 }
 
@@ -28,7 +28,7 @@ export default function StayNights({
 
 
   useEffect(() => {
-    if (arriveDate.format('DD-MMMM-YYYY') == "Invalid date") {
+    if (arriveDate?.format('DD-MMMM-YYYY') == "Invalid date") {
       // console.log("not found date");
       setDateCheck(true)
     }
@@ -44,15 +44,15 @@ export default function StayNights({
         name: "Sayman",
         avatar: "/assets/test_stay.jpg"
       },
-      arriveDate: dateCheck ? date.clone().subtract(1, 'day').format ('DD-MMMM-YYYY') : arriveDate.format('DD-MMMM-YYYY'),
-      departDate: dateCheck ? date.format('DD-MMMM-YYYY') : departDate.format('DD-MMMM-YYYY'),
+      arriveDate: dateCheck ? date.clone().subtract(1, 'day').format ('DD-MMMM-YYYY') : arriveDate?.format('DD-MMMM-YYYY'),
+      departDate: dateCheck ? date.format('DD-MMMM-YYYY') : departDate?.format('DD-MMMM-YYYY'),
       type: "mystay",
       comment: "Hey everyone, I’m bringing snacks and drinks! Could everyone pick a"
 
 
     }
-    const othersData = bookingarry.filter((f, index) => index != spaceIndex)
-    const targetedData = bookingarry.find((f, index) => index == spaceIndex)
+    const othersData = bookingarry.filter((f:any, index:any) => index != spaceIndex)
+    const targetedData = bookingarry.find((f:any, index:any) => index == spaceIndex)
     const newModifiedData = ({ ...targetedData, stays: [...targetedData.stays, newBooking] })
     othersData.splice(spaceIndex, 0, newModifiedData);
 
@@ -84,12 +84,12 @@ export default function StayNights({
         </Heading4>
 
         <div className="flex gap-3">
-          <Heading4>{dateCheck ? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY') : arriveDate.format('DD-MMMM-YYYY')}</Heading4>
+          <Heading4>{dateCheck ? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY') : arriveDate?.format('DD-MMMM-YYYY')}</Heading4>
           <Heading4>{'->'}</Heading4>
           <Heading4>{dateCheck ?
            date.format('DD-MMMM-YYYY')
 
-            : departDate.format('DD-MMMM-YYYY')}</Heading4>
+            : departDate?.format('DD-MMMM-YYYY')}</Heading4>
         </div>
       </div>
 

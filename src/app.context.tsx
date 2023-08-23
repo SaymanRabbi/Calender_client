@@ -18,6 +18,10 @@ interface MyContextProps {
   setAvailableStay:Function;
   getMonth:any;
   setGetMonth:Function;
+  unavailabeData:any;
+  cardContext:number;
+  setCardContext:Function;
+  setUnavailablData:Function;
 }
 interface MyContextProviderProps {
   children: ReactNode;
@@ -42,7 +46,6 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   const [isPopoverOpen,setIsPopoverOpen]=useState<boolean>(false)
   const [buttonState, setButtonState]=useState<boolean>(true)
   const [pop, setPop]=useState<boolean>(false)
-  const [capsuleParentLoc, setCapsuleParentLoc]=useState()
   // const [capsuleP, setCapsuleP]=useState(0)
   const [cardContext, setCardContext]=useState(0)
   const [ammountOfStayDates,setammountOfStayDates] = useState<number>(0)
@@ -72,8 +75,6 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     setButtonState,
     pop,
     setPop,
-    capsuleParentLoc,
-    setCapsuleParentLoc,
     ammountOfStayDates,
     setammountOfStayDates,
     // capsuleP,

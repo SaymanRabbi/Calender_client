@@ -1,13 +1,18 @@
-import React from 'react';
 
-import { Heading4 } from '../Typography';
-import { OutlineButton } from '../Buttons';
 import { useMyContext } from '@/app.context';
+import { OutlineButton } from '../Buttons';
+import { Heading4 } from '../Typography';
+interface IProps {
+  arriveDate: any;
+  departDate: any;
+  dayIndex: number;
+  spaceIndex: number;
+}
 
 export default function UnavailableNights({ arriveDate,
   departDate,
   dayIndex,
-  spaceIndex, }) {
+  spaceIndex, }: IProps) {
 
   const { bookingarry, setbookingarry, setButtonState,setAvailableStay } = useMyContext() 
 
@@ -18,8 +23,8 @@ export default function UnavailableNights({ arriveDate,
     const targetedArray = bookingarry[spaceIndex]
     if (targetedArray) {
       const allStays = targetedArray.stays
-      const filterStays = allStays.filter(f => f.arriveDate != arrive && f.departDate != depart)
-      const othersData = bookingarry.filter((f, index) => index != spaceIndex)
+      const filterStays = allStays.filter((f:any) => f.arriveDate != arrive && f.departDate != depart)
+      const othersData = bookingarry.filter((f:any, index:any) => index != spaceIndex)
       const newModifiedData = ({ ...targetedArray, stays: filterStays })
       othersData.splice(spaceIndex, 0, newModifiedData);
       setbookingarry(othersData)

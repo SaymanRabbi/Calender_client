@@ -1,14 +1,13 @@
-import React, { ReactNode } from 'react';
 
 import styles from '@/styles/components/Menu/ListItem.module.scss';
-import { ButtonSmall } from '../Typography';
 import { OutlineButton } from '../Buttons';
+import { ButtonSmall } from '../Typography';
 
 type Props = {
   text: string;
   selected: boolean;
   onClick?: VoidFunction;
-  icon?: ReactNode | boolean ;
+  icon?: JSX.Element ;
 };
 
 export default function ListItem({ text, selected, onClick, icon }: Props) {

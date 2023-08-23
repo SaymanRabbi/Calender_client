@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { createPopper } from '@popperjs/core';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
-import { createPopper } from '@popperjs/core';
 
-import StayNights from './StayNights';
 import PopoverCard from '.';
-import { useMyContext } from '@/app.context';
+import StayNights from './StayNights';
 
 function AvailableStayPopover({ children, resetAvailableStay, id }: any) {
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(

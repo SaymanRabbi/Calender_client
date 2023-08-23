@@ -1,5 +1,4 @@
-import React from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import DropDown from '@/components/Listbox';
 import ListItem from '@/components/Listbox/ListItem';

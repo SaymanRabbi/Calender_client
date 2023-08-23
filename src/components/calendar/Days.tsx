@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from 'react';
 import moment from 'moment';
+import React, { useState } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
 import Day from './Day';
@@ -14,11 +14,10 @@ import Day from './Day';
 // import AvailableStayCapsule from './AvailableStay/AvailableStayCapsule';
 // import TestPopover from './TestPopover';
 // import AvailableStayCapsulHover from './AvailableStay/AvailableStayCapsulHover';
-import AvailableStay from './capsule/AvailableStay';
 import { Body1, Body2 } from '../Typography';
+import AvailableStay from './capsule/AvailableStay';
 import Stay from './capsule/Stay';
 import UnavailableStay from './capsule/UnavailableStay';
-import { useMyContext } from '@/app.context';
 
 // interface MonthProps {
 //   dates: Moment[];
@@ -115,12 +114,17 @@ function Days({
           <div className=''>
             <div className="flex items-end justify-center h-8">
             {/* <Body1 className=' text-black   '>{gettingMonth(date)}</Body1> */}
-              {date.date() === 1 ? (
-                // <Body1 className=' text-black   '>{date.format('MMMM' )}</Body1>
-                <span className="h-8" />
-              ) : (
-                <span className="h-8" />
-                // <Body1>{date.format('MMMM')}</Body1>
+              {date.date() === 1 ? <>
+                <h2 className=' relative overflow-auto'>
+                <Body1 className=' text-black  font-semibold  left-[10%] sticky top-0 l'>{date.format('MMMM' )}</Body1>
+                </h2>
+                  <span className="h-8" /> 
+              
+              </> : (
+               <>
+                {/* <span className="h-8" />
+                <Body1>{date.format('MMMM')}</Body1> */}
+               </>
 
               )}
             </div>
