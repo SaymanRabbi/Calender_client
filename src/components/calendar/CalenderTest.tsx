@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
 import moment, { Moment } from 'moment';
+import React,  { useEffect, useRef, useState } from 'react';
 // import { usePopper } from 'react-popper';
 import { CalendarLayer } from '@/icons';
 import Days from './Days';
 import MonthIndicator from './MonthIndicator';
 
-import { Body1, Body2, Heading3 } from '../Typography';
+import { useMyContext } from '@/app.context';
 import { TodayButton } from '../Buttons';
+import { Body1, Body2, Heading3 } from '../Typography';
+
 
 // import PopoverCard from '../popover';
 // import StayOptions from '../popover/StayOptions';
@@ -120,15 +122,23 @@ const stays1 = {
         'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
 
       arriveDate: '06-August-2023',
-      departDate: '8-August-2023',
+      departDate: '08-August-2023',
     },
-  ],
+  ], 
 };
 const stays2 = {
-  property: 'Bedroom 2',
-  guestLimit: '2',
+  property: 'Bedroom 1',
+  guestLimit: '4',
   type: 'sleeping space',
   stays: [
+    {
+      user: {
+        name: ';Cookie Monster l',
+      },
+      type: 'mystay',
+      arriveDate: '16-August-2023',
+      departDate: '18-August-2023',
+    },
     {
       user: {
         name: 'Cookie Monster',
@@ -137,48 +147,8 @@ const stays2 = {
       type: 'mystay',
       comment:
         'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
-      arriveDate: '22-July-2023',
-      departDate: '25-July-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '20-August-2023',
-      departDate: '21-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '21-August-2023',
-      departDate: '22-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '22-August-2023',
-      departDate: '23-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '01-April-2023',
-      departDate: '02-April-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '02-April-2023',
-      departDate: '03-April-2023',
+      arriveDate: '18-August-2023',
+      departDate: '19-August-2023',
     },
     {
       user: {
@@ -186,72 +156,116 @@ const stays2 = {
         avater: '/assets/duckey.jpg',
       },
       type: 'mystay',
-      arriveDate: '25-July-2023',
-      departDate: '28-July-2023',
+      arriveDate: '19-August-2023',
+      departDate: '20-August-2023',
     },
     {
       user: {
-        name: 'Wonder Woman',
-        avater: '/assets/wonderwoman.jpg',
+        name: 'Cookie Monster',
+      },
+      type: 'mystay',
+      arriveDate: '21-August-2023',
+      departDate: '24-August-2023',
+    },
+    {
+      user: {
+        name: 'Cookie Monster',
+      },
+      type: 'unavailable',
+      arriveDate: '25-August-2023',
+      departDate: '26-August-2023',
+    },
+    {
+      user: {
+        name: 'Cookie Monster',
+      },
+      type: 'unavailable',
+      arriveDate: '26-August-2023',
+      departDate: '27-August-2023',
+    },
+    {
+      user: {
+        name: 'Cookie Monster',
+      },
+      type: 'unavailable',
+      arriveDate: '27-August-2023',
+      departDate: '28-August-2023',
+    },
+    {
+      user: {
+        name: 'Shamim',
+        avater: '/assets/dogu.jpg',
       },
       type: 'mystay',
       comment:
         'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
 
-      arriveDate: '29-July-2023',
-      departDate: '04-August-2023',
+      arriveDate: '29-August-2023',
+      departDate: '01-September-2023',
     },
+    {
+      user: {
+        name: 'TEST',
+        avater: '/assets/test_stay.jpg',
+      },
+      type: 'mystay',
+      comment:
+        'Hey everyone, I’m bringing snacks and drinks! Could everyone pick a day and plan a for dinner for everyone that evening? ',
 
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '05-August-2023',
-      departDate: '06-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
       arriveDate: '06-August-2023',
-      departDate: '07-August-2023',
-    },
-    {
-      user: {
-        name: 'Cookie Monster',
-      },
-      type: 'unavailable',
-      arriveDate: '07-August-2023',
       departDate: '08-August-2023',
     },
   ],
 };
-const spacesX = [stays1, stays2, stays2];
+
+
+
+
 // const spacesY = [stays1, stays2];
 
 function CalenderTest() {
-  const [spaces, setSpaces] = useState(spacesX);
+
+  const { bookingarry, setbookingarry } = useMyContext()
+  const [spaces, setSpaces] = useState([]);
+
+    useEffect(() => {
+      const allArr=[stays1, stays2, stays2]
+      setbookingarry(allArr)
+  }, [stays1, stays2]);
+
+    useEffect(() => {
+      setSpaces(bookingarry)
+  }, [bookingarry]);
+
+
+  // const spacesX = [stays1, stays2, stays2];
+
   //   const [isUpdate, setIsUpdate] = useState<Boolean>(true);
 
   const containerRef = useRef<any>(null);
 
-  useEffect(() => {
-    setSpaces(spacesX);
-  }, []);
+  // useEffect(() => {
+  //   setSpaces(spacesX);
+  // }, [spacesX]);
+
+
+  // const {file}=useContext(CalenderProvider)
+  // console.log("file", file );
 
   const [dates, setDates] = useState<Moment[]>([]);
+
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
+  const { getMonth, setGetMonth,availableStay,setAvailableStay} = useMyContext();
 
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
+  // setGetMonth(currentMonth.format('MMMM'))
   const [scrollIndex, setScrollIndex] = useState<any>(null);
 
-  const [availableStay, setAvailableStay] = useState<any>({ 
-    space: null,
-    departDate: '',
-    arriveDate: '',
-  });
+  // const [availableStay, setAvailableStay] = useState<any>({
+  //   space: null,
+  //   departDate: '',
+  //   arriveDate: '',
+  // });
 
   useEffect(() => {
     const daysArray: Moment[] = [];
@@ -269,8 +283,10 @@ function CalenderTest() {
         daysArray.push(date);
       }
     });
-    setDates(daysArray); 
+    setDates(daysArray);
   }, []);
+
+
 
   const setDateToToday = () => {
     const month = moment();
@@ -311,11 +327,15 @@ function CalenderTest() {
     const targetIndex = dates.findIndex(
       (date) =>
         date.format('DD-MMMM-YYYY') ===
-        firstDayOfPrevMonth.format('DD-MMMM-YYYY') 
+        firstDayOfPrevMonth.format('DD-MMMM-YYYY')
     );
 
     if (targetIndex !== -1) {
-      setScrollIndex(targetIndex + 1 - 1);
+      // console.log("it is ok");
+      setScrollIndex(targetIndex + 1  - 1);
+    }
+    else {
+      // console.log("error getting");
     }
   };
 
@@ -339,8 +359,11 @@ function CalenderTest() {
     setInViewDateIndex(visibleColumnStartIndex);
   };
 
+
+
   return (
     <>
+
       <div className="flex flex-col items-center justify-center w-full mx-auto my-6 bg-white card-shadow rounded-2xl">
         <div className="flex items-center justify-between w-full gap-3 p-5 max-md:flex-col-reverse">
           <MonthIndicator
@@ -388,6 +411,7 @@ function CalenderTest() {
         <div className="w-full">
           <div className="flex flex-grow flex-shrink-0 flex-nowrap scroll-smooth">
             <div className="relative flex w-full border-blue-200 ">
+            <div className=' absolute  top-[5px] left-[200px] z-[999999] font-semibold'> {currentMonth?.format('MMMM')}</div>
               <div className="w-[180px] max-md:mt-16 max-md:absolute left-0 max-md:z-10">
                 <div>
                   <div className=" md:flex hidden bg-transparent md:bg-white flex-col justify-center flex-shrink-0 w-[180px] items-start h-16 px-3 " />
@@ -424,11 +448,13 @@ function CalenderTest() {
           <Heading3 className="text-white">Stay scheduling is paused.</Heading3>
         </div>
       </div>
+
       {/* <div className="fixed  top-5 left-1/2 translate-x-[-50%]">
         <PopoverCard>
           <StayOptions />
         </PopoverCard>
       </div> */}
+
     </>
   );
 }

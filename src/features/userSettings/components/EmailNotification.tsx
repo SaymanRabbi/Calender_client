@@ -11,7 +11,7 @@ export default function EmailNotification() {
 
     const onSubmit = (data: object) => {
         // eslint-disable-next-line no-console
-        console.log(data);
+     
     };
     return (
         <SettingsCard

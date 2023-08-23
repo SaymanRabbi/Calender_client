@@ -14,7 +14,7 @@ import ImageUpload from '@/components/ImageUpload';
 const UserSettings: NextPageWithLayout = function () {
   const handleImageSelect = (file: File) => {
     // eslint-disable-next-line no-console
-    console.log('Selected image:', file);
+    // console.log('Selected image:', file);
   };
   return (
     <DashboardWrapper>

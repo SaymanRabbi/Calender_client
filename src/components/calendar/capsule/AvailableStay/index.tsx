@@ -1,10 +1,12 @@
 // import { Moment } from 'moment';
-import React from 'react';
-import moment from 'moment';
+import { useMyContext } from '@/app.context';
 import StayNights from '@/components/popover/StayNights';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+import CalendarPopover from '../../CalendarPopover';
 import AvailableStayCapsulHover from './AvailableStayCapsulHover';
 import AvailableStayCapsule from './AvailableStayCapsule';
-import CalendarPopover from '../../CalendarPopover';
+
 
 // interface IProps {
 //   date: Moment;
@@ -21,38 +23,175 @@ export default function AvailableStay({
   availableStay,
   setAvailableStay,
 }: any) {
+  const { buttonState,setButtonState,pop, setPop,bookingarry, setbookingarry } = useMyContext();
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+const [allbookingdate, setallbookingdate]=useState([])
+
+useEffect(()=>{
+  // if(bookingarry){
+  //   let booking=[]
+  //   const alldata=bookingarry.stays.foreach(s=>{
+
+  //   })
+  // }
+},[])
+
+// console.log("data", bookingarry );
+
+  useEffect(() => {
+
+    if(availableStay?.space != null ){
+      if(!buttonState){
+        setAvailableStay(prevState => ({ ...prevState, space: null }));
+      }
+
+    }
+  }, [buttonState,availableStay.space,setAvailableStay]);
+
+
+// all booked date getting
+
+
+const [allDates, setAllDates] = useState([]);
+
+// useEffect(() => {
+//   const stays = bookingarry[spaceIndex]?.stays
+// const formatDate = (date) => {
+//   const day = date.getDate();
+//   const month = date.toLocaleString('default', { month: 'long' });
+//   const year = date.getFullYear();
+//   return `${day}-${month}-${year}`;
+// };
+
+// const getDatesBetween = (startDate, endDate) => {
+//   const dates = [];
+//   const currentDate = new Date(startDate);
+//   endDate = new Date(endDate);
+
+//   while (currentDate <= endDate) {
+//     dates.push(formatDate(currentDate));
+//     currentDate.setDate(currentDate.getDate() + 1);
+//   }
+
+//   return dates;
+// };
+
+//   const dates = stays?.reduce((acc, stay) => {
+//     if (stay.arriveDate && stay.departDate) {
+//       const stayDates = getDatesBetween(stay.arriveDate, stay.departDate);
+//       return [...acc, ...stayDates];
+//     }
+//     return acc;
+//   }, []);
+//   const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
+
+//   setAllDates(uniqueDates);
+
+//   // setAllDates(dates);
+// }, [bookingarry,spaceIndex ])
+
+// getting dates
+
+const getDates=(spaceI)=>{
+  const stays = bookingarry[spaceI]?.stays
+const formatDate = (date) => {
+  // const day = date.getDate();
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+};
+
+const getDatesBetween = (startDate, endDate) => {
+  const dates = [];
+  const currentDate = new Date(startDate);
+  endDate = new Date(endDate);
+
+  while (currentDate <= endDate) {
+    dates.push(formatDate(currentDate));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return dates;
+};
+
+  const dates = stays?.reduce((acc, stay) => {
+    if (stay.arriveDate && stay.departDate) {
+      const stayDates = getDatesBetween(stay.arriveDate, stay.departDate);
+      return [...acc, ...stayDates];
+    }
+    return acc;
+  }, []);
+  const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
+
+
+  console.log("all dates", uniqueDates );
+ return uniqueDates
+}
+
+
+  const openPop=()=>{
+    setPop(true)
+  }
+
+
   const handleAvailableStay = (directiontoLeft: boolean) => {
+    // console.log("space index", spaceIndex );
+    setButtonState(true)
     if (directiontoLeft) {
+      const leftDate=date.clone().subtract(1, 'days').format('DD-MMMM-YYYY');
+      if(!getDates(spaceIndex).includes(leftDate)) {
       setAvailableStay({
         space: spaceIndex,
         arriveDate: date.clone().subtract(2, 'days'),
         departDate: date.clone(),
       });
+      }
+      else {
+        alert("Date not available");
+      }
+
     } else {
-      setAvailableStay({
-        space: spaceIndex,
-        arriveDate: date.clone().subtract(1, 'days'),
-        departDate: date.clone().add(1, 'days'),
-      });
+      const rightDate=date.clone().add(0, 'day').format('DD-MMMM-YYYY');
+      if(!getDates(spaceIndex).includes(rightDate)) {
+        setAvailableStay({
+          space: spaceIndex,
+          arriveDate: date.clone().subtract(1, 'days'),
+          departDate: date.clone().add(1, 'days'),
+        });
+        }
+        else {
+          alert("Date not available");
+        }
+
+
     }
   };
+
 
   const increaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
     const newDepartDate = availableStay.arriveDate
-      .clone()
+      .clone().subtract(0, 'day')
       .format('DD-MMMM-YYYY');
+      console.log("new date", newDepartDate );
 
-    if (!unavailableDate.includes(newDepartDate)) {
+    if (!unavailableDate.includes(newDepartDate ) && !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
         ...prev,
         arriveDate: prev.arriveDate.clone().subtract(1, 'day'),
       }));
     }
+    else {
+      alert("Date not available")
+    }
+
+    openPop()
   };
 
   const decreaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
+
     const newDepartDate = date.clone().add(1, 'day');
 
     if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
@@ -65,13 +204,17 @@ export default function AvailableStay({
 
   const increaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
-    const newDepartDate = date.clone().add(1, 'day');
 
-    if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
+    const newDepartDate = date.clone().add(0, 'day');
+    if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY')) &&
+    !getDates(spaceIndex).includes(newDepartDate.format('DD-MMMM-YYYY'))) {
       setAvailableStay((prev: any) => ({
         ...prev,
         departDate: prev.departDate.clone().add(1, 'day'),
       }));
+    }
+    else {
+      alert("Date not available")
     }
   };
 
@@ -96,6 +239,7 @@ export default function AvailableStay({
 
   return (
     <CalendarPopover
+
       ammountOfStayDates={Math.abs(
         moment(availableStay.arriveDate).diff(
           moment(availableStay.departDate),
@@ -104,6 +248,7 @@ export default function AvailableStay({
       )}
       component={
         <StayNights
+        date={date}
           spaceIndex={spaceIndex}
           arriveDate={moment(availableStay.arriveDate)}
           departDate={moment(availableStay.departDate)}
@@ -116,11 +261,15 @@ export default function AvailableStay({
         />
       }
       resetAvailableStay={resetAvailableStay}
+      isPopoverOpen={isPopoverOpen}
+      setIsPopoverOpen={setIsPopoverOpen}
+
       id={date.format('DD-MMM-YYYY')}
     >
+
       {availableStay.space === spaceIndex &&
         availableStay.departDate.format('DD-MMM-YYYY') ===
-          date.format('DD-MMM-YYYY') && (
+        date.format('DD-MMM-YYYY') && (
           <AvailableStayCapsule
             availableStay={availableStay}
             increaseCardWidthToLeft={increaseCardWidthToLeft}

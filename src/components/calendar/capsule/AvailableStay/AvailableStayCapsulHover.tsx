@@ -4,7 +4,6 @@ import { Go, GoLeft } from '@/icons';
 
 export default function AvailableStayCapsulHover({
   date,
-
   handleAvailableStay,
 }: any) {
   return (
