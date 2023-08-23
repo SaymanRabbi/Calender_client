@@ -53,8 +53,46 @@ useEffect(()=>{
 
 const [allDates, setAllDates] = useState([]);
 
-useEffect(() => {
-  const stays = bookingarry.stays
+// useEffect(() => {
+//   const stays = bookingarry[spaceIndex]?.stays
+// const formatDate = (date) => {
+//   const day = date.getDate();
+//   const month = date.toLocaleString('default', { month: 'long' });
+//   const year = date.getFullYear();
+//   return `${day}-${month}-${year}`;
+// };
+
+// const getDatesBetween = (startDate, endDate) => {
+//   const dates = [];
+//   const currentDate = new Date(startDate);
+//   endDate = new Date(endDate);
+
+//   while (currentDate <= endDate) {
+//     dates.push(formatDate(currentDate));
+//     currentDate.setDate(currentDate.getDate() + 1);
+//   }
+
+//   return dates;
+// };
+
+//   const dates = stays?.reduce((acc, stay) => {
+//     if (stay.arriveDate && stay.departDate) {
+//       const stayDates = getDatesBetween(stay.arriveDate, stay.departDate);
+//       return [...acc, ...stayDates];
+//     }
+//     return acc;
+//   }, []);
+//   const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
+
+//   setAllDates(uniqueDates);
+
+//   // setAllDates(dates);
+// }, [bookingarry,spaceIndex ])
+
+// getting dates
+
+const getDates=(spaceI)=>{
+  const stays = bookingarry[spaceI]?.stays
 const formatDate = (date) => {
   const day = date.getDate();
   const month = date.toLocaleString('default', { month: 'long' });
@@ -75,7 +113,7 @@ const getDatesBetween = (startDate, endDate) => {
   return dates;
 };
 
-  const dates = stays.reduce((acc, stay) => {
+  const dates = stays?.reduce((acc, stay) => {
     if (stay.arriveDate && stay.departDate) {
       const stayDates = getDatesBetween(stay.arriveDate, stay.departDate);
       return [...acc, ...stayDates];
@@ -84,10 +122,9 @@ const getDatesBetween = (startDate, endDate) => {
   }, []);
   const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
 
-  setAllDates(uniqueDates);
+ return uniqueDates
+}
 
-  // setAllDates(dates);
-}, [bookingarry.stays])
 
   const openPop=()=>{
     setPop(true)
@@ -95,10 +132,11 @@ const getDatesBetween = (startDate, endDate) => {
 
 
   const handleAvailableStay = (directiontoLeft: boolean) => {
+    // console.log("space index", spaceIndex );
     setButtonState(true)
     if (directiontoLeft) {
       const leftDate=date.clone().subtract(2, 'days').format('DD-MMMM-YYYY');
-      if(!allDates.includes(leftDate)) {
+      if(!getDates(spaceIndex).includes(leftDate)) {
       setAvailableStay({
         space: spaceIndex,
         arriveDate: date.clone().subtract(2, 'days'),
@@ -110,8 +148,8 @@ const getDatesBetween = (startDate, endDate) => {
       }
 
     } else {
-      const leftDate=date.clone().add(1, 'day').format('DD-MMMM-YYYY');
-      if(!allDates.includes(leftDate)) {
+      const rightDate=date.clone().add(1, 'day').format('DD-MMMM-YYYY');
+      if(!getDates(spaceIndex).includes(rightDate)) {
         setAvailableStay({
           space: spaceIndex,
           arriveDate: date.clone().subtract(1, 'days'),
@@ -129,12 +167,11 @@ const getDatesBetween = (startDate, endDate) => {
 
   const increaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
-
     const newDepartDate = availableStay.arriveDate
       .clone().subtract(1, 'day')
       .format('DD-MMMM-YYYY');
 
-    if (!unavailableDate.includes(newDepartDate ) && !allDates.includes(newDepartDate)) {
+    if (!unavailableDate.includes(newDepartDate ) && !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
         ...prev,
         arriveDate: prev.arriveDate.clone().subtract(1, 'day'),
@@ -162,9 +199,10 @@ const getDatesBetween = (startDate, endDate) => {
 
   const increaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
+
     const newDepartDate = date.clone().add(1, 'day');
     if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY')) &&
-    !allDates.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
+    !getDates(spaceIndex).includes(newDepartDate.format('DD-MMMM-YYYY'))) {
       setAvailableStay((prev: any) => ({
         ...prev,
         departDate: prev.departDate.clone().add(1, 'day'),

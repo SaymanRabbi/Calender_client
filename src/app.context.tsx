@@ -16,6 +16,8 @@ interface MyContextProps {
   setbookingarry:Function;
   availableStay:any;
   setAvailableStay:Function;
+  getMonth:any;
+  setGetMonth:Function;
 }
 interface MyContextProviderProps {
   children: ReactNode;
@@ -44,7 +46,8 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   // const [capsuleP, setCapsuleP]=useState(0)
   const [cardContext, setCardContext]=useState(0)
   const [ammountOfStayDates,setammountOfStayDates] = useState<number>(0)
-  const [bookingarry,setbookingarry] = useState<any>()
+  const [bookingarry,setbookingarry] = useState<any>([])
+  const [getMonth, setGetMonth] = useState<any>([])
   const [availableStay, setAvailableStay] = useState<any>({
     space: null,
     departDate: '',
@@ -74,6 +77,7 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     setbookingarry,
     availableStay,
     setAvailableStay,
+    getMonth, setGetMonth, 
   };
 
   return (

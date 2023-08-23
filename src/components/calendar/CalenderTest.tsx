@@ -240,17 +240,17 @@ function CalenderTest() {
   const [spaces, setSpaces] = useState([]);
 
     useEffect(() => {
-      setbookingarry(stays1)
-  }, [stays1]);
+      const allArr=[stays1, stays2, stays2]
+      setbookingarry(allArr)
+  }, [stays1, stays2]);
 
     useEffect(() => {
-      setSpaces([bookingarry,stays2,stays2 ])
-  }, [bookingarry,stays2]);
+      setSpaces(bookingarry)
+  }, [bookingarry]);
 
 
   // const spacesX = [stays1, stays2, stays2];
 
-  console.log("spce", spaces);
   //   const [isUpdate, setIsUpdate] = useState<Boolean>(true);
 
   const containerRef = useRef<any>(null);
@@ -266,6 +266,7 @@ function CalenderTest() {
   const [dates, setDates] = useState<Moment[]>([]);
 
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
+  const { getMonth, setGetMonth,availableStay,setAvailableStay} = useMyContext();
 
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   const [scrollIndex, setScrollIndex] = useState<any>(null);
@@ -275,7 +276,6 @@ function CalenderTest() {
   //   departDate: '',
   //   arriveDate: '',
   // });
-  const {availableStay,setAvailableStay}=useMyContext()
 
   useEffect(() => {
     const daysArray: Moment[] = [];
@@ -341,7 +341,11 @@ function CalenderTest() {
     );
 
     if (targetIndex !== -1) {
-      setScrollIndex(targetIndex + 1 - 1);
+      // console.log("it is ok");
+      setScrollIndex(targetIndex + 1  - 1);
+    }
+    else {
+      // console.log("error getting");
     }
   };
 
@@ -417,6 +421,7 @@ function CalenderTest() {
         <div className="w-full">
           <div className="flex flex-grow flex-shrink-0 flex-nowrap scroll-smooth">
             <div className="relative flex w-full border-blue-200 ">
+            {/* <div className=' absolute  top-[0px] left-[200px] z-[999999] font-semibold'> {getMonth}</div> */}
               <div className="w-[180px] max-md:mt-16 max-md:absolute left-0 max-md:z-10">
                 <div>
                   <div className=" md:flex hidden bg-transparent md:bg-white flex-col justify-center flex-shrink-0 w-[180px] items-start h-16 px-3 " />

@@ -15,7 +15,7 @@ const Feedback: NextPageWithLayout = function () {
 
   const onSubmit = (data: object) => {
     // eslint-disable-next-line no-console
-    console.log(data);
+    // console.log(data);
   };
   return (
     <DashboardWrapper>

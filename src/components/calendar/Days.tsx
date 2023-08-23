@@ -43,7 +43,7 @@ function Days({
   setAvailableStay,
 }: any) {
   const [today] = useState(moment());
-  const { capsuleParentLoc, setCapsuleParentLoc} = useMyContext();
+  // const { getMonth, setGetMonth} = useMyContext();
 
 
   // Get references to the parent and child elements
@@ -69,6 +69,13 @@ function Days({
 //   }
 // });
 
+// const gettingMonth=(date)=>{
+//   console.log("date", date.format('MMMM' ));
+//  const month = date.format('MMMM')
+//  setGetMonth(month)
+//  return month
+// }
+// console.log("mon", getMonth );
 
   const renderDay = ({
     columnIndex,
@@ -93,6 +100,7 @@ function Days({
     }
 
     return (
+
       <div key={rowIndex} style={style}>
         {columnIndex === dates.length - 1 ? (
           <div className="h-full flex flex-col">
@@ -104,12 +112,15 @@ function Days({
             </div>
           </div>
         ) : (
-          <div>
+          <div className=''>
             <div className="flex items-end justify-center h-8">
+            {/* <Body1 className=' text-black   '>{gettingMonth(date)}</Body1> */}
               {date.date() === 1 ? (
-                <Body1>{date.format('MMMM')}</Body1>
+                <Body1 className=' text-black   '>{date.format('MMMM' )}</Body1>
               ) : (
                 <span className="h-8" />
+                // <Body1>{date.format('MMMM')}</Body1>
+
               )}
             </div>
             <div className="flex">
@@ -191,6 +202,7 @@ function Days({
           </div>
         )}
       </div>
+
     );
   };
 
@@ -206,7 +218,7 @@ function Days({
         rowCount={1}
         onItemsRendered={onItemsRendered}
         rowHeight={(_) => (spaces.length - 1) * 82 + 159}
-        className="allDaysSection" 
+        className="allDaysSection  "
       >
         {renderDay}
       </Grid>{' '}
