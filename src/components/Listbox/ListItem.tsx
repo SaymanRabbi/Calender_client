@@ -12,7 +12,6 @@ type Props = {
 
 export default function ListItem({ text, selected, onClick, icon }: Props) {
   // eslint-disable-next-line no-console
-  console.log(icon)
   return (
     <button
       onClick={onClick}

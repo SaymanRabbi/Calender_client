@@ -115,9 +115,9 @@ function Days({
             <div className="flex items-end justify-center h-8">
             {/* <Body1 className=' text-black   '>{gettingMonth(date)}</Body1> */}
               {date.date() === 1 ? <>
-                <h2 className=' relative overflow-auto'>
-                <Body1 className=' text-black  font-semibold  left-[10%] sticky top-0 l'>{date.format('MMMM' )}</Body1>
-                </h2>
+                
+                <Body1 className=' text-black  font-semibold  left-[10%] sticky top-0 l bg-white  pl-12 z-[1000]'>{date.format('MMMM' )}</Body1>
+               
                   <span className="h-8" /> 
               
               </> : (
