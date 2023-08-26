@@ -14,14 +14,13 @@ const  AvailableStayCapsule =({
 
   const childRef = useRef(null);
   const { ammountOfStayDates,setammountOfStayDates } = useMyContext();
-
   const ammountOfStayDate = Math.abs(
     availableStay.arriveDate.diff(availableStay.departDate, 'days')
   );
-  const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
+  const stayWidth = ammountOfStayDate > 1 ? ammountOfStayDate * 80 - 20 : 70;
   useEffect (()=>{
-    setammountOfStayDates(ammountOfStayDate)
-  },[ammountOfStayDates,stayWidth])
+   setammountOfStayDates(ammountOfStayDate)
+},[ammountOfStayDates,stayWidth])
   // console.log("availableStay", bookingarry  );
 
 //   useEffect(()=>{

@@ -175,10 +175,8 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   const decreaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
-
-    const newDepartDate = date.clone().add(1, 'day');
-
-    if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
+    const newDepartDate = date.clone().add(1, 'day').format('DD-MMMM-YYYY')
+    if (!unavailableDate.includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
         ...prev,
         arriveDate: prev.arriveDate.clone().add(1, 'day'),
@@ -188,10 +186,9 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   const increaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
-
-    const newDepartDate = date.clone().add(0, 'day');
-    if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY')) &&
-    !getDates(spaceIndex).includes(newDepartDate.format('DD-MMMM-YYYY'))) {
+    const newDepartDate = date.clone().add(0, 'day').format('DD-MMMM-YYYY')
+    if (!unavailableDate.includes(newDepartDate) &&
+    !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
         ...prev,
         departDate: prev.departDate.clone().add(1, 'day'),
@@ -204,9 +201,8 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   const decreaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
-    const newArriveDate = date.clone().subtract(1, 'day');
-
-    if (!unavailableDate.includes(newArriveDate.format('DD-MMMM-YYYY'))) {
+    const newArriveDate = date.clone().subtract(1, 'day').format('DD-MMMM-YYYY')
+    if (!unavailableDate.includes(newArriveDate)) {
       setAvailableStay((prev: any) => ({
         ...prev,
         departDate: prev.departDate.clone().subtract(1, 'day'),
@@ -223,7 +219,6 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   return (
     <CalendarPopover
-
       ammountOfStayDates={Math.abs(
         moment(availableStay.arriveDate).diff(
           moment(availableStay.departDate),
