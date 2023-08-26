@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function useMediaQuery(breakpoint: number) {
   const [breakpointReached, setBreakpointReached] = useState(false);
@@ -19,7 +19,7 @@ export default function useMediaQuery(breakpoint: number) {
     setCaluculated(true);
 
     return () => media.removeEventListener('change', updateTarget);
-  }, [breakpoint, updateTarget]);
+  }, [breakpoint, updateTarget ]);
 
   return { breakpointReached, calculated };
 }

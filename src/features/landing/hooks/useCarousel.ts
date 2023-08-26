@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const CAROUSEL_TIMEOUT = 5000;
 
@@ -13,7 +13,7 @@ export default function useCarousel(slideCount: number) {
     return () => {
       clearInterval(interval);
     };
-  }, [slideCount]);
+  }, [slideCount ]);
 
   return index;
 }

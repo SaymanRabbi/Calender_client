@@ -139,10 +139,10 @@ function Days({
                 return (
                   <div
                     key={`space-${index + 1}`}
-                    className={`${dayClass} w-20 h-20 cursor-pointer border-y border-l border-gray-200`}
+                    className={`${dayClass}  w-20 h-20 cursor-pointer border-y border-l border-gray-200`}
                   >
                     {/* this is relative for  */}
-                    <div className="relative w-20 h-20 group -left-1/2">
+                    <div className=" absolute overflow-visible w-20 h-20 group -left-1/2">
                       {space?.stays?.map((stay: any, stayIndex: number) => {
                         const arriveDate = moment(
                           new Date(stay.arriveDate),
@@ -156,7 +156,7 @@ function Days({
                           arriveDate,
                           departDate,
                           undefined,
-                          '(]'
+                          '[]'
                         );
                         if (isBetweenDates) {
                           unavailableDate.push(date.format('DD-MMMM-YYYY'));
@@ -218,7 +218,7 @@ function Days({
       <Grid
         height={(spaces.length - 1) * 82 + 159}
         style={{ overflowY: 'hidden' }}
-        width={1120}
+        width={4000}
         ref={containerRef}
         columnCount={dates.length}
         columnWidth={() => 80}

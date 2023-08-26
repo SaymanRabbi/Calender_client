@@ -30,7 +30,7 @@ export default function useHeader() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [ translate]);
 
   return {
     translate: -translate,

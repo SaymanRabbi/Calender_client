@@ -1,19 +1,16 @@
 import StayNights from '@/components/popover/StayNights';
 import { CommentDark } from '@/icons';
 import moment from 'moment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CalendarPopover from '../CalendarPopover';
 
 export default function Stay({ stay, spaceIndex }: any) {
   const arriveDate = moment(new Date(stay.arriveDate), 'DD-MMMM-YYYY');
   const departDate = moment(stay.departDate, 'DD-MMMM-YYYY');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  // const { ammountOfStayDates,setammountOfStayDates } = useMyContext();
-  // console.log(ammountOfStayDates,"hello")
   const ammountOfStayDates = Math.abs(arriveDate.diff(departDate, 'days'));
-  // setammountOfStayDates(ammountOfStayDate)
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
-  // console.log(stayWidth, 'stayWidth');
+  useEffect(() => {},[stayWidth] )
   return (
     <CalendarPopover
     isPopoverOpen={isPopoverOpen}
@@ -29,13 +26,17 @@ export default function Stay({ stay, spaceIndex }: any) {
       }
       id="ss"
     >
-      <div className="absolute  right-[10px] top-1/2 -translate-y-1/2 z-[99999]">
+      <div className="right-[10px] top-1/2 -translate-y-1/2"
+       style={{
+        position: 'absolute'
+       }}
+      >
         <div
           style={{
-            width: `${stayWidth}px`,
             background: 'linear-gradient(135deg,#c345ff, #66f 41.06%)',
+            width: `${stayWidth}px`,
           }}
-          className={`gradient-info flex shadow-stay-shadow rounded-[20px] h-10 items-center gap-1.5 z-[99999] ${
+          className={` gradient-info flex shadow-stay-shadow rounded-[20px] h-10 items-center gap-1.5 w-[${stayWidth}px] ${
             stay?.user?.avater ? 'pl-1 pr-3' : 'px-5'
           } `}
         >
