@@ -54,14 +54,6 @@ function CalendarPopover({
     }
   );
   // console.log("card", cardContext);
-  useEffect(() => {
-    // console.log("pop", pop);
-    if (pop) {
-      // const buttonEm=document.querySelector(".targetedElement")
-      // console.log("em", buttonEm) ;
-      // buttonEm?.click()
-    }
-  }, [pop])
 
   useEffect(() => {
     const cardValue = -(ammountOfStayDates * 20.6) - 160
@@ -114,7 +106,7 @@ function CalendarPopover({
     return () => {
       document.removeEventListener('click', handleDocumentClick);
     };
-  }, [popperElement, referenceElement, resetAvailableStay]);
+  }, [popperElement, referenceElement, resetAvailableStay, ammountOfStayDates, isPopoverOpen, setIsPopoverOpen, arriveDate, departDate, dayIndex, spaceIndex]);
 
   const togglePopover = (event: any) => {
     // setIsPopoverOpen((prev) => !prev);
