@@ -111,7 +111,7 @@ const getDatesBetween = (startDate:any, endDate:any) => {
   const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
 
 
-  console.log("all dates", uniqueDates );
+  // console.log("all dates", uniqueDates );
  return uniqueDates
 }
 
@@ -153,14 +153,12 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
     }
   };
-
-
   const increaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
     const newDepartDate = availableStay.arriveDate
       .clone().subtract(0, 'day')
       .format('DD-MMMM-YYYY');
-      console.log("new date", newDepartDate );
+      // console.log("new date", newDepartDate );
 
     if (!unavailableDate.includes(newDepartDate ) && !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({

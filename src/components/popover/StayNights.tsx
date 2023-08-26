@@ -28,12 +28,12 @@ export default function StayNights({
 
 
   useEffect(() => {
-    if (arriveDate?.format('DD-MMMM-YYYY') == "Invalid date") {
+    if (arriveDate?.format('DD-MMMM-YYYY') != "Invalid date" && departDate?.format('DD-MMMM-YYYY') != "Invalid date") {
       // console.log("not found date");
-      setDateCheck(true)
+      setDateCheck(false)
     }
-    else { setDateCheck(false) }
-  }, [arriveDate])
+    else { setDateCheck(true) }
+  }, [arriveDate, departDate])
 
 
 
@@ -45,7 +45,7 @@ export default function StayNights({
         avatar: "/assets/test_stay.jpg"
       },
       arriveDate: dateCheck ? date.clone().subtract(1, 'day').format ('DD-MMMM-YYYY') : arriveDate?.format('DD-MMMM-YYYY'),
-      departDate: dateCheck ? date.format('DD-MMMM-YYYY') : departDate?.format('DD-MMMM-YYYY'),
+      departDate: dateCheck ? date.clone().subtract(0, 'day').format('DD-MMMM-YYYY') : departDate?.format('DD-MMMM-YYYY'),
       type: "mystay",
       comment: "Hey everyone, I’m bringing snacks and drinks! Could everyone pick a"
 
@@ -75,20 +75,21 @@ export default function StayNights({
     // }
 
   }
-
+  // console.log("date", dateCheck, date.clone().subtract(1, 'day').format('DD-MMMM-YYYY'), date.clone().subtract(0, 'day').format('DD-MMMM-YYYY'),arriveDate?.format('DD-MMMM-YYYY'),departDate?.format('DD-MMMM-YYYY'))
+  // issue solved
+// console.log("date",Number.isNaN(ammountOfStayDates),dateCheck,spaceIndex)
   return (
     <>
       <div className="flex flex-col items-center py-3">
         <Heading4>
-          {dateCheck ? 1 : ammountOfStayDates} night {spaceIndex}
+          {dateCheck ? 1 : Number.isNaN(ammountOfStayDates) ? 1 :ammountOfStayDates} Night
         </Heading4>
 
         <div className="flex gap-3">
           <Heading4>{dateCheck ? date.clone().subtract(1, 'day').format('DD-MMMM-YYYY') : arriveDate?.format('DD-MMMM-YYYY')}</Heading4>
           <Heading4>{'->'}</Heading4>
           <Heading4>{dateCheck ?
-           date.format('DD-MMMM-YYYY')
-
+           date.clone().subtract(0, 'day').format('DD-MMMM-YYYY')
             : departDate?.format('DD-MMMM-YYYY')}</Heading4>
         </div>
       </div>

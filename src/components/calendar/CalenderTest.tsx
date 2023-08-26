@@ -251,12 +251,8 @@ function CalenderTest() {
 
   // const {file}=useContext(CalenderProvider)
   // console.log("file", file );
-
-  const [dates, setDates] = useState<Moment[]>([]);
-
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
-  const {availableStay,setAvailableStay} = useMyContext();
-
+  const {availableStay,setAvailableStay,dates, setDates} = useMyContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   // setGetMonth(currentMonth.format('MMMM'))
   const [scrollIndex, setScrollIndex] = useState<any>(null);
@@ -269,15 +265,13 @@ function CalenderTest() {
 
   useEffect(() => {
     const daysArray: Moment[] = [];
-    [...Array(5)].forEach((_, index) => {
+    [...Array(36)].forEach((_, index) => {
       const monthDate = moment()
         .subtract(3, 'month')
         .startOf('month')
         .add(index, 'month');
-
       const lastDayOfMonth = moment(monthDate).endOf('month');
       const daysInMonth = lastDayOfMonth.date();
-
       for (let day = 1; day <= daysInMonth; day++) {
         const date = moment(monthDate).date(day);
         daysArray.push(date);
@@ -323,31 +317,22 @@ function CalenderTest() {
 
   // this function for handling previous month button click
   const previousMonth = () => {
-    const firstDayOfPrevMonth = currentMonth.subtract(1, 'month').date(1);
-    const targetIndex = dates.findIndex(
-      (date) =>
-        date.format('DD-MMMM-YYYY') ===
-        firstDayOfPrevMonth.format('DD-MMMM-YYYY')
-    );
-
+    const firstDayOfPrevMonth = currentMonth.clone().subtract(1, 'month').startOf('month');
+    const targetIndex = dates.findIndex(date => date.isSame(firstDayOfPrevMonth, 'day'));
+  
     if (targetIndex !== -1) {
-      // console.log("it is ok");
-      setScrollIndex(targetIndex + 1  - 1);
-    }
-    else {
-      // console.log("error getting");
+      setScrollIndex(targetIndex);
+    } else {
+      console.log("Error: Previous month date not found.");
     }
   };
+  
 
   // this function for handling next month button click
   const nextMonth = () => {
-    const firstDayOfPrevMonth = currentMonth.clone().add(1, 'month').date(1);
-    const targetIndex = dates.findIndex(
-      (date) =>
-        date.format('DD-MMMM-YYYY') ===
-        firstDayOfPrevMonth.format('DD-MMMM-YYYY')
-    );
-
+    const firstDayOfNextMonth = currentMonth.clone().add(1, 'month').startOf('month');
+    const targetIndex = dates.findIndex(date => date.isSame(firstDayOfNextMonth, 'day'));
+  
     if (targetIndex !== -1) {
       setScrollIndex(targetIndex + 13);
     }

@@ -13,10 +13,11 @@ export default function Stay({ stay, spaceIndex }: any) {
   const ammountOfStayDates = Math.abs(arriveDate.diff(departDate, 'days'));
   // setammountOfStayDates(ammountOfStayDate)
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;
+  // console.log(stayWidth, 'stayWidth');
   return (
     <CalendarPopover
     isPopoverOpen={isPopoverOpen}
-setIsPopoverOpen={setIsPopoverOpen}
+    setIsPopoverOpen={setIsPopoverOpen}
       ammountOfStayDates={ammountOfStayDates}
       component={
         <StayNights
@@ -28,13 +29,13 @@ setIsPopoverOpen={setIsPopoverOpen}
       }
       id="ss"
     >
-      <div className="absolute  right-[10px] top-1/2 -translate-y-1/2 ">
+      <div className="absolute  right-[10px] top-1/2 -translate-y-1/2 z-[99999]">
         <div
           style={{
             width: `${stayWidth}px`,
             background: 'linear-gradient(135deg,#c345ff, #66f 41.06%)',
           }}
-          className={`gradient-info flex shadow-stay-shadow rounded-[20px] h-10 items-center gap-1.5 ${
+          className={`gradient-info flex shadow-stay-shadow rounded-[20px] h-10 items-center gap-1.5 z-[99999] ${
             stay?.user?.avater ? 'pl-1 pr-3' : 'px-5'
           } `}
         >

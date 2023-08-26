@@ -1,3 +1,4 @@
+import { Moment } from 'moment';
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 // Define the shape of your context
@@ -22,6 +23,8 @@ interface MyContextProps {
   cardContext:number;
   setCardContext:Function;
   setUnavailablData:Function;
+  dates: Moment[];
+  setDates: Function;
 }
 interface MyContextProviderProps {
   children: ReactNode;
@@ -51,6 +54,7 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
   const [ammountOfStayDates,setammountOfStayDates] = useState<number>(0)
   const [bookingarry,setbookingarry] = useState<any>([])
   const [getMonth, setGetMonth] = useState<any>([])
+  const [dates, setDates] = useState<Moment[]>([]);
   const [unavailabeData, setUnavailablData] = useState<any>({
     dayIndex:"",
     dataIndex:"",
@@ -87,6 +91,7 @@ export function MyContextProvider({ children }: MyContextProviderProps) {
     setAvailableStay,
     getMonth, setGetMonth,
     unavailabeData, setUnavailablData,
+    dates, setDates
   };
 
   return (
