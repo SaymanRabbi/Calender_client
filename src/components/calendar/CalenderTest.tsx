@@ -252,6 +252,7 @@ function CalenderTest() {
   // const {file}=useContext(CalenderProvider)
   // console.log("file", file );
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
+  console.log("inViewDateIndex", inViewDateIndex );
   const {availableStay,setAvailableStay,dates, setDates} = useMyContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   // setGetMonth(currentMonth.format('MMMM'))
@@ -397,7 +398,7 @@ function CalenderTest() {
           <div className="flex flex-grow flex-shrink-0 flex-nowrap scroll-smooth">
             <div className="relative flex w-full border-blue-200 ">
               
-              <div className=' absolute  top-[6.2px] z-[0]   font-semibold left-[16%] px-4 bg-white h-[70px]'> {currentMonth?.format('MMMM')}</div>
+              <div className='absolute  top-[0] z-[10] pr-14 font-semibold left-[16%] bg-white'> {currentMonth?.format('MMMM')}</div>
               
            
               <div className="w-[180px] max-md:mt-16 max-md:absolute left-0 max-md:z-10">

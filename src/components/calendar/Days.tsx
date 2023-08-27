@@ -42,6 +42,7 @@ function Days({
   setAvailableStay,
 }: any) {
   const [today] = useState(moment());
+  console.log("today", onItemsRendered);
   // const { getMonth, setGetMonth} = useMyContext();
 
 
@@ -112,11 +113,10 @@ function Days({
           </div>
         ) : (
           <div className=''>
-            <div className="flex items-end justify-center h-8">
+            <div className="flex justify-center h-8 z-[0]">
             {/* <Body1 className=' text-black   '>{gettingMonth(date)}</Body1> */}
               {date.date() === 1 ? <>
-                
-                <Body1 className=' text-black  font-semibold  left-[10%] sticky top-0 l bg-white  pl-12 z-[1000]'>{date.format('MMMM' )}</Body1>
+                <Body1 className=' text-black  font-semibold  left-[16%] sticky top-0 z-[5] '>{date.format('MMMM' )}</Body1>
                
                   <span className="h-8" /> 
               
@@ -218,7 +218,7 @@ function Days({
       <Grid
         height={(spaces.length - 1) * 82 + 159}
         style={{ overflowY: 'hidden' }}
-        width={4000}
+        width={1120}
         ref={containerRef}
         columnCount={dates.length}
         columnWidth={() => 80}
