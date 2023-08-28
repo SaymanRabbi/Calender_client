@@ -21,7 +21,7 @@ const  AvailableStayCapsule =({
   useEffect (()=>{
    setammountOfStayDates(ammountOfStayDate)
 },[ammountOfStayDates,stayWidth])
-  // console.log("availableStay", bookingarry  );
+ 
 
 //   useEffect(()=>{
 //     const element = document.querySelector(".offsetValue");

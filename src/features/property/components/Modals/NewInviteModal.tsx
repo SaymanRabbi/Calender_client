@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import { ModalProps, DashboardModalType } from '@/types';
 import { GradientButton } from '@/components/Buttons';
-import DashboardModalWrapper from '@/components/Wrappers/DashboardModalWrapper';
-import InputField from '@/components/InputField';
 import Dropdown from '@/components/Dropdown';
+import InputField from '@/components/InputField';
+import DashboardModalWrapper from '@/components/Wrappers/DashboardModalWrapper';
+import { DashboardModalType, ModalProps } from '@/types';
 
 
 interface Props extends ModalProps {
@@ -26,7 +26,7 @@ function NewInviteModal({ bindings }: Props) {
 
 
     const onSubmit = () => {
-        // console.log('guest list page');
+  
     };
     return (
         <DashboardModalWrapper

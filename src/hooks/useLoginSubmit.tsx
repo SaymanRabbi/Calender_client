@@ -26,7 +26,6 @@
 //     password,
 //   }: any) => {
 //     setLoading(true);
-//     console.log(name, email, registerEmail, verifyEmail, password);
 //     // name,
 //     // email,
 //     // registerEmail,
@@ -34,7 +33,7 @@
 //     // password,
 //   }: any) => {
 //     setLoading(true);
-//     // console.log(name, email, registerEmail, verifyEmail, password);
+
 //   };
 
 //   return {

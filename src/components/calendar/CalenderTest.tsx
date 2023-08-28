@@ -250,9 +250,8 @@ function CalenderTest() {
 
 
   // const {file}=useContext(CalenderProvider)
-  // console.log("file", file );
+  
   const [inViewDateIndex, setInViewDateIndex] = useState(0);
-  console.log("inViewDateIndex", inViewDateIndex );
   const {availableStay,setAvailableStay,dates, setDates} = useMyContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>(moment());
   // setGetMonth(currentMonth.format('MMMM'))
@@ -324,7 +323,7 @@ function CalenderTest() {
     if (targetIndex !== -1) {
       setScrollIndex(targetIndex);
     } else {
-      console.log("Error: Previous month date not found.");
+     
     }
   };
   

@@ -13,8 +13,7 @@ function MonthIndicator({
   onPreviousMonth,
   onNextMonth,
 }: MonthIndicatorProps) {
-  // console.log(currentMonth?.format('MMMM-YYYY'));
-  // console.log("currentMonth", currentMonth)
+  
   return (
     <div className="flex justify-center items-center gap-1.5">
       <button onClick={()=>onPreviousMonth()}>

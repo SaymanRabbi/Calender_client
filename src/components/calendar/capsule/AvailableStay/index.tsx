@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import CalendarPopover from '../../CalendarPopover';
 import AvailableStayCapsulHover from './AvailableStayCapsulHover';
 import AvailableStayCapsule from './AvailableStayCapsule';
-
-
 interface IProps {
   date: Moment;
   unavailableDate: (string | boolean)[];
@@ -23,6 +21,7 @@ export default function AvailableStay({
   availableStay,
   setAvailableStay,
 }: any) {
+  
   const { buttonState,setButtonState, setPop,bookingarry} = useMyContext();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   useEffect(() => {
@@ -111,18 +110,15 @@ const getDatesBetween = (startDate:any, endDate:any) => {
   const uniqueDates = [...new Set(dates)]; // Remove duplicates using Set
 
 
-  // console.log("all dates", uniqueDates );
+
  return uniqueDates
 }
-
-
   const openPop=()=>{
     setPop(true)
   }
 
-
   const handleAvailableStay = (directiontoLeft: boolean) => {
-    // console.log("space index", spaceIndex );
+
     setButtonState(true)
     if (directiontoLeft) {
       const leftDate=date.clone().subtract(1, 'days').format('DD-MMMM-YYYY');
@@ -136,7 +132,6 @@ const getDatesBetween = (startDate:any, endDate:any) => {
       else {
         alert("Date not available");
       }
-
     } else {
       const rightDate=date.clone().add(0, 'day').format('DD-MMMM-YYYY');
       if(!getDates(spaceIndex).includes(rightDate)) {
@@ -149,8 +144,6 @@ const getDatesBetween = (startDate:any, endDate:any) => {
         else {
           alert("Date not available");
         }
-
-
     }
   };
   const increaseCardWidthToLeft = (event: any) => {
@@ -158,7 +151,7 @@ const getDatesBetween = (startDate:any, endDate:any) => {
     const newDepartDate = availableStay.arriveDate
       .clone().subtract(0, 'day')
       .format('DD-MMMM-YYYY');
-      // console.log("new date", newDepartDate );
+
 
     if (!unavailableDate.includes(newDepartDate ) && !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
@@ -175,8 +168,8 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   const decreaseCardWidthToLeft = (event: any) => {
     event.stopPropagation();
-    const newDepartDate = date.clone().add(1, 'day').format('DD-MMMM-YYYY')
-    if (!unavailableDate.includes(newDepartDate)) {
+    const newDepartDate = date.clone().add(1, 'day')
+    if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY'))) {
       setAvailableStay((prev: any) => ({
         ...prev,
         arriveDate: prev.arriveDate.clone().add(1, 'day'),
@@ -186,8 +179,8 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   const increaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
-    const newDepartDate = date.clone().add(0, 'day').format('DD-MMMM-YYYY')
-    if (!unavailableDate.includes(newDepartDate) &&
+    const newDepartDate = date.clone().add(0, 'day')
+    if (!unavailableDate.includes(newDepartDate.format('DD-MMMM-YYYY')) &&
     !getDates(spaceIndex).includes(newDepartDate)) {
       setAvailableStay((prev: any) => ({
         ...prev,
@@ -201,8 +194,8 @@ const getDatesBetween = (startDate:any, endDate:any) => {
 
   const decreaseCardWidthToRight = (event: any) => {
     event.stopPropagation();
-    const newArriveDate = date.clone().subtract(1, 'day').format('DD-MMMM-YYYY')
-    if (!unavailableDate.includes(newArriveDate)) {
+    const newArriveDate = date.clone().subtract(1, 'day')
+    if (!unavailableDate.includes(newArriveDate).format('DD-MMMM-YYYY')) {
       setAvailableStay((prev: any) => ({
         ...prev,
         departDate: prev.departDate.clone().subtract(1, 'day'),
@@ -242,10 +235,8 @@ const getDatesBetween = (startDate:any, endDate:any) => {
       resetAvailableStay={resetAvailableStay}
       isPopoverOpen={isPopoverOpen}
       setIsPopoverOpen={setIsPopoverOpen}
-
       id={date.format('DD-MMM-YYYY')}
     >
-
       {availableStay.space === spaceIndex &&
         availableStay.departDate.format('DD-MMM-YYYY') ===
         date.format('DD-MMM-YYYY') && (

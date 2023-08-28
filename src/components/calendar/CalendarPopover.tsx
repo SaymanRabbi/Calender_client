@@ -39,8 +39,7 @@ function CalendarPopover({
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
   const { pop, ammountOfStayDates } = useMyContext();
-  //  console.log("ammountOfStayDates", ammountOfStayDates);
-  // const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  
   const [cardPlace, setCardPlace] = useState(0)
 
 
@@ -53,7 +52,7 @@ function CalendarPopover({
       strategy: 'fixed',
     }
   );
-  // console.log("card", cardContext);
+  
 
   useEffect(() => {
     const cardValue = -(ammountOfStayDates * 20.6) - 160
@@ -66,8 +65,7 @@ function CalendarPopover({
     }
     const dynamic = Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined || ammountOfStayDates < 2 ? 0 : 33
     const dynamicTow = (Number.isNaN(ammountOfStayDates) || ammountOfStayDates === undefined) ? 0 : ammountOfStayDates
-    // console.log("dynamic", dynamic);
-    // console.log("dynamicTow", dynamicTow);
+   
     if (referenceElement && popperElement) {
       createPopper(referenceElement, popperElement, {
         placement: 'bottom',
@@ -94,7 +92,7 @@ function CalendarPopover({
           !popperElement.contains(target) &&
           !referenceElement.contains(target)
         ) {
-          // console.log("clicking");
+        
           setIsPopoverOpen(false);
           resetAvailableStay();
         }

@@ -1,10 +1,8 @@
+import UnavailableNights from '@/components/popover/UnavailableNights';
 import styles from '@/styles/calendar/unavailableStay.module.scss';
 import moment from 'moment';
-import React, { useState } from 'react';
-// import TestPopover from '../TestPopover';
-import UnavailableNights from '@/components/popover/UnavailableNights';
+import { useState } from 'react';
 import CalendarPopover from '../CalendarPopover';
-import { useMyContext } from '@/app.context';
 
 export default function UnavailableStay({ stay, date,dayIndex,spaceIndex }: any) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -15,7 +13,7 @@ export default function UnavailableStay({ stay, date,dayIndex,spaceIndex }: any)
   //   dayIndex,dataIndex,arriveDate,departDate
   // })
 
-  // console.log("un", unavailabeData );
+  
 
   const ammountOfStayDates = Math.abs(arriveDate.diff(departDate, 'days'));
   const stayWidth = ammountOfStayDates > 1 ? ammountOfStayDates * 80 - 20 : 70;

@@ -1,20 +1,19 @@
-import React from 'react';
 
 import type { NextPageWithLayout } from '@/types';
 
+import Avatar from '@/components/Avatar';
+import ImageUpload from '@/components/ImageUpload';
 import DashboardWrapper from '@/components/Wrappers/DashboardWrapper';
+import DashboardNav from '@/features/shared/components/DashboardNav';
 import SidebarTitleCard from '@/features/shared/components/SidebarTitleCard';
 import SettingsCard from '@/features/stays/components/SettingsCard';
-import Avatar from '@/components/Avatar';
 import AccountInformation from '@/features/userSettings/components/AccountInformation';
 import EmailNotification from '@/features/userSettings/components/EmailNotification';
-import DashboardNav from '@/features/shared/components/DashboardNav';
-import ImageUpload from '@/components/ImageUpload';
 
 const UserSettings: NextPageWithLayout = function () {
   const handleImageSelect = (file: File) => {
     // eslint-disable-next-line no-console
-    // console.log('Selected image:', file);
+
   };
   return (
     <DashboardWrapper>

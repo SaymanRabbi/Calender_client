@@ -12,8 +12,7 @@ function AvailableStayPopover({ children, resetAvailableStay, id }: any) {
   );
   const [referenceElement, setReferenceElement] = useState<any>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  // const { isPopoverOpen, setIsPopoverOpen } = useMyContext();
-  // console.log("is", isPopoverOpen );
+  // const { isPopoverOpen, setIsPopoverOpen } = useMyContext
 
 
   const { styles, attributes }: any = usePopper(

@@ -1,13 +1,12 @@
-import React from 'react';
 
-import { useForm, FieldValues } from 'react-hook-form';
 import type { NextPageWithLayout } from '@/types';
+import { FieldValues, useForm } from 'react-hook-form';
 
-import DashboardWrapper from '@/components/Wrappers/DashboardWrapper';
-import { Body1, Heading4 } from '@/components/Typography';
 import { GradientButton } from '@/components/Buttons';
-import DashboardNav from '@/features/shared/components/DashboardNav';
 import Card from '@/components/Card';
+import { Body1, Heading4 } from '@/components/Typography';
+import DashboardWrapper from '@/components/Wrappers/DashboardWrapper';
+import DashboardNav from '@/features/shared/components/DashboardNav';
 import SidebarTitleCard from '@/features/shared/components/SidebarTitleCard';
 
 const Feedback: NextPageWithLayout = function () {
@@ -15,7 +14,7 @@ const Feedback: NextPageWithLayout = function () {
 
   const onSubmit = (data: object) => {
     // eslint-disable-next-line no-console
-    // console.log(data);
+
   };
   return (
     <DashboardWrapper>

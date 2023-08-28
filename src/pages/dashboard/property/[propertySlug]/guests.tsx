@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 // import { useRouter } from 'next/router';
 
-import { DownGo } from '@/icons';
-import DisclosureItem from '@/components/Disclosure';
-import DashboardWrapper from '@/components/Wrappers/DashboardWrapper';
 import { OutlineButton } from '@/components/Buttons';
-import { Body1, Body2 } from '@/components/Typography';
+import DisclosureItem from '@/components/Disclosure';
 import InputField from '@/components/InputField';
+import { Body1, Body2 } from '@/components/Typography';
+import DashboardWrapper from '@/components/Wrappers/DashboardWrapper';
+import { DownGo } from '@/icons';
 // import PageTitle from '@/features/shared/components/PageTitle';
 // import Nav from '@/features/dashboard/components/Nav';
-import SidebarTitleCard from '@/features/shared/components/SidebarTitleCard';
+import Dropdown from '@/components/Dropdown';
 import SidebarInfoCard from '@/features/property/components/SidebarInfoCard';
 import DashboardNav from '@/features/shared/components/DashboardNav';
+import SidebarTitleCard from '@/features/shared/components/SidebarTitleCard';
 import useDashboardModals from '@/hooks/useDashboardModals';
-import Dropdown from '@/components/Dropdown';
 
 const guestData = [
   {
@@ -95,7 +95,7 @@ function GuestList() {
   };
 
   const onSubmit = () => {
-    // console.log('guest list page');
+
   };
 
 

@@ -42,7 +42,7 @@ function Days({
   setAvailableStay,
 }: any) {
   const [today] = useState(moment());
-  console.log("today", onItemsRendered);
+  
   // const { getMonth, setGetMonth} = useMyContext();
 
 
@@ -70,12 +70,12 @@ function Days({
 // });
 
 // const gettingMonth=(date)=>{
-//   console.log("date", date.format('MMMM' ));
+//
 //  const month = date.format('MMMM')
 //  setGetMonth(month)
 //  return month
 // }
-// console.log("mon", getMonth );
+
 
   const renderDay = ({
     columnIndex,
@@ -135,7 +135,6 @@ function Days({
               {spaces.map((space: any, index: number) => {
                 let isBetweenDates = false;
                 const unavailableDate: string[] = [];
-
                 return (
                   <div
                     key={`space-${index + 1}`}
@@ -144,6 +143,7 @@ function Days({
                     {/* this is relative for  */}
                     <div className=" absolute overflow-visible w-20 h-20 group -left-1/2">
                       {space?.stays?.map((stay: any, stayIndex: number) => {
+                       
                         const arriveDate = moment(
                           new Date(stay.arriveDate),
                           'DD-MMMM-YYYY'
@@ -159,8 +159,11 @@ function Days({
                           '[]'
                         );
                         if (isBetweenDates) {
-                          unavailableDate.push(date.format('DD-MMMM-YYYY'));
+                          if(arriveDate.format('DD-MMMM-YYYY') != date.format('DD-MMMM-YYYY') ){
+                            unavailableDate.push(date.format('DD-MMMM-YYYY'));
                           date.format('DD-MMMM-YYYY');
+                          }
+
                         }
 
                         if (

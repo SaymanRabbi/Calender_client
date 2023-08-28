@@ -20,7 +20,7 @@ export default function StayNights({
   spaceIndex,
   date,
 }: IProps) {
-  // console.log("date is", arriveDate.format('DD-MMMM-YYYY'));
+
 
   const { bookingarry, setbookingarry,
     setButtonState,setAvailableStay  } = useMyContext()
@@ -29,7 +29,7 @@ export default function StayNights({
 
   useEffect(() => {
     if (arriveDate?.format('DD-MMMM-YYYY') != "Invalid date" && departDate?.format('DD-MMMM-YYYY') != "Invalid date") {
-      // console.log("not found date");
+
       setDateCheck(false)
     }
     else { setDateCheck(true) }
@@ -75,9 +75,9 @@ export default function StayNights({
     // }
 
   }
-  // console.log("date", dateCheck, date.clone().subtract(1, 'day').format('DD-MMMM-YYYY'), date.clone().subtract(0, 'day').format('DD-MMMM-YYYY'),arriveDate?.format('DD-MMMM-YYYY'),departDate?.format('DD-MMMM-YYYY'))
+  
   // issue solved
-// console.log("date",Number.isNaN(ammountOfStayDates),dateCheck,spaceIndex)
+
   return (
     <>
       <div className="flex flex-col items-center py-3">
